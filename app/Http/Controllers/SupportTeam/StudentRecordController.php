@@ -39,6 +39,15 @@ class StudentRecordController extends Controller
         return back()->with('flash_success', __('msg.p_reset'));
     }
 
+    public function studentReportListByClass($class_id)
+    {
+        $data['my_class'] = $mc = $this->my_class->getMC(['id' => $class_id])->first();
+        $data['students'] = $this->student->findStudentsByClass($class_id);
+        $data['sections'] = $this->my_class->getClassSections($class_id);
+
+        return is_null($mc) ? Qs::goWithDanger() : view('pages.support_team.students.student_report_list', $data);
+    }
+
     public function create()
     {
         $data['my_classes'] = $this->my_class->all();
@@ -63,7 +72,7 @@ class StudentRecordController extends Controller
         $data['code'] = strtoupper(Str::random(10));
         $data['password'] = Hash::make('student');
         $data['photo'] = Qs::getDefaultUserImage();
-        $data['username'] = Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.mt_rand(1000, 9999);
+        $data['username'] = 'TSA/MIN/'.$sr['year_admitted'].'/'.mt_rand(1000, 9999);
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');

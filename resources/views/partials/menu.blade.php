@@ -114,6 +114,16 @@
                                 </ul>
                             </li>
 
+                            {{--Student report--}}
+                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.report', 'students.submit_report', 'students.report_form']) ? 'nav-item-expanded' : '' }}">
+                                <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.report', 'students.submit_report', 'students.report']) ? 'active' : '' }}">Student Report</a>
+                                <ul class="nav nav-group-sub">
+                                    @foreach(App\Models\MyClass::orderBy('name')->get() as $c)
+                                        <li class="nav-item"><a href="{{ route('students.student_report_list', $c->id) }}" class="nav-link ">{{ $c->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
                             @if(Qs::userIsTeamSA())
 
                             {{--Student Promotion--}}
@@ -127,6 +137,45 @@
 
                             {{--Student Graduated--}}
                             <li class="nav-item"><a href="{{ route('students.graduated') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.graduated' ]) ? 'active' : '' }}">Students Graduated</a></li>
+                                @endif
+
+                        </ul>
+                    </li>
+                @endif
+
+                {{--Manage event and gallery--}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['event.create', 'event.index', 'event.edit', 'event.show', 'gallery.create', 'gallery.edit', 'gallery.index']) ? 'nav-item-expanded nav-item-open' : '' }} ">
+                        <a href="#" class="nav-link"><i class="icon-users"></i> <span> Events and Gallery</span></a>
+
+                        <ul class="nav nav-group-sub" data-submenu-title="Manage Events">
+                            @if(Qs::userIsTeamSA())
+                            {{--event management--}}
+                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['gallery.create', 'gallery.index']) ? 'nav-item-expanded' : '' }}"><a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['event.index', 'event.create' ]) ? 'active' : '' }}">Manage Events</a>
+                                <ul class="nav nav-group-sub">
+                                    <li class="nav-item"><a href="{{ route('event.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['event.index']) ? 'active' : '' }}">Events</a></li>
+                                    {{-- <li class="nav-item"><a href="{{ route('event.create') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['event.create']) ? 'active' : '' }}">Create Event</a></li> --}}
+                                </ul>
+
+                            </li>
+
+                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['category.create', 'category.index']) ? 'nav-item-expanded' : '' }}"><a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['category.index', 'category.create' ]) ? 'active' : '' }}">Manage Gallery Categories</a>
+                                <ul class="nav nav-group-sub">
+                                    <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['category.index']) ? 'active' : '' }}">Categories</a></li>
+                                    {{-- <li class="nav-item"><a href="{{ route('category.create') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['category.create']) ? 'active' : '' }}">Create Category</a></li> --}}
+                                </ul>
+
+                            </li>
+
+                            {{--Student Promotion--}}
+                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['gallery.create', 'gallery.index']) ? 'nav-item-expanded' : '' }}"><a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['gallery.index', 'gallery.create' ]) ? 'active' : '' }}">Manage Gallery</a>
+                            <ul class="nav nav-group-sub">
+                                <li class="nav-item"><a href="{{ route('gallery.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['gallery.index']) ? 'active' : '' }}">Gallery</a></li>
+                                {{-- <li class="nav-item"><a href="{{ route('gallery.create') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.create']) ? 'active' : '' }}">Create Gallery</a></li> --}}
+                            </ul>
+
+                            </li>
+
                                 @endif
 
                         </ul>

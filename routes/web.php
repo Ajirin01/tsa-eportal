@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('graduated', 'StudentRecordController@graduated')->name('students.graduated');
             Route::put('not_graduated/{id}', 'StudentRecordController@not_graduated')->name('st.not_graduated');
             Route::get('list/{class_id}', 'StudentRecordController@listByClass')->name('students.list');
+            Route::get('student_report_list/{class_id}', 'StudentRecordController@studentReportListByClass')->name('students.student_report_list');
 
             /* Promotions */
             Route::post('promote_selector', 'PromotionController@selector')->name('students.promote_selector');
@@ -37,6 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('promotion/{fc?}/{fs?}/{tc?}/{ts?}', 'PromotionController@promotion')->name('students.promotion');
             Route::post('promote/{fc}/{fs}/{tc}/{ts}', 'PromotionController@promote')->name('students.promote');
 
+            // Route::get('report-form/{class}/{student_id}', 'ReportController@form')->name('report_form');
+            // Route::post('report-submit/{class}/{student_id}', 'ReportController@submit_form')->name('submit_report');
+            // Route::get('report/{class}/{student_id}', 'ReportController@report')->name('report');
+        
+        
         });
 
         /*************** Users *****************/
@@ -136,6 +142,9 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         Route::resource('students', 'StudentRecordController');
+        Route::resource('event', 'EventController');
+        Route::resource('category', 'GalleryCategoryController');
+        Route::resource('gallery', 'GalleryController');
         Route::resource('users', 'UserController');
         Route::resource('classes', 'MyClassController');
         Route::resource('sections', 'SectionController');
@@ -144,6 +153,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('exams', 'ExamController');
         Route::resource('dorms', 'DormController');
         Route::resource('payments', 'PaymentController');
+        Route::get('report-form/{class}/{student_id}', 'ReportController@form')->name('report_form');
+        Route::post('report-submit/{class}/{student_id}', 'ReportController@submit_form')->name('submit_report');
+        Route::get('report/{class}/{student_id}', 'ReportController@report')->name('report');
 
     });
 
