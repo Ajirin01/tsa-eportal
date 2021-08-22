@@ -105,7 +105,7 @@ class ReportController extends Controller
         $student_id = preg_replace(".-.","/", $student_id);
         $report = Report::where('class',$class)->where('student_id',$student_id)->get();
         $student = Student::where('adm_no', $student_id)->first();
-        // return response()->json(User::find($student->user_id));
+        // return response()->json(User::find ($student->user_id));
         $student = User::find($student->user_id);
         // $student_id = $student_id;
         // $class = $class;
