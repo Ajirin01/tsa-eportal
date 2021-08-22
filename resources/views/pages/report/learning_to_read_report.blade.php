@@ -1,3 +1,36 @@
+@php
+    function grade($total){
+      if($total < 50 && $total > 39){
+          echo "D";
+        }else if($total < 39 && $total > 0){
+          echo "F";
+        }else if($total >= 50 && $total < 60 ){
+          echo 'C';
+        }else if($total >= 60  && $total < 70 ){
+          echo 'B';
+        }else if($total >= 70  && $total <= 100 ){
+          echo 'A';
+        }else if($total == 0){
+          echo '-';
+        }
+    }
+
+    function remark($total){
+      if($total < 50 && $total > 39){
+          echo "Fair";
+        }else if($total < 39 && $total > 0){
+          echo "Poor";
+        }else if($total >= 50 && $total < 60 ){
+          echo 'Good';
+        }else if($total >= 60  && $total < 70 ){
+          echo 'V.Good';
+        }else if($total >= 70  && $total <= 100 ){
+          echo 'Excellent';
+        }else if($total == 0){
+          echo '-';
+        }
+    }
+@endphp
 <html xmlns:v="urn:schemas-microsoft-com:vml"
 xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:w="urn:schemas-microsoft-com:office:word"
@@ -608,7 +641,9 @@ minor-latin;mso-bidi-font-family:"Times New Roman";color:red;mso-ansi-language:
 EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
 style='page-break-before:auto;mso-break-type:section-break'>
 </span></i></b>
-{{-- {{json_encode($report)}} --}}
+{{-- {{ json_encode($report) }} --}}
+
+{{-- {{ $report->maths_ca_ex }} --}}
 <div class=Section2><br clear=all style='page-break-before:always'>
 
 <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
@@ -652,13 +687,12 @@ SHEET<o:p></o:p></span></b></p>
 style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;mso-bidi-font-size:
 10.0pt;font-family:"Times New Roman","serif";color:#002060'>NAME: </span></b><b
 style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;mso-bidi-font-size:
-10.0pt;font-family:"Times New Roman","serif";color:black;mso-themecolor:text1'>SALAU
-DIVINE<span style='mso-tab-count:1'><o:p>&nbsp;&nbsp;&nbsp;</o:p></span></span></b><b
+10.0pt;font-family:"Times New Roman","serif";color:black;mso-themecolor:text1'>{{ $student->name }}<span style='mso-tab-count:1'><o:p>&nbsp;&nbsp;&nbsp;</o:p></span></span></b><b
 style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;mso-bidi-font-size:
 10.0pt;font-family:"Times New Roman","serif";color:#002060'>ADM. NO.:<span
 style='mso-spacerun:yes'>  </span></span></b><b style='mso-bidi-font-weight:
 normal'><span style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:
-"Times New Roman","serif"'>TSA/MIN/0069/17 {{$student_id}} <span style='color:#002060'><span
+"Times New Roman","serif"'>{{$student_id}} <span style='color:#002060'><span
 style='mso-tab-count:1'><o:p>&nbsp;&nbsp;&nbsp;</o:p></span>BIRTHDATE:<span
 style='mso-spacerun:yes'>  </span></span>2ND FEBRUARY, 2016<span
 style='mso-tab-count:2'><o:p>&nbsp;&nbsp;&nbsp;</o:p></span><span style='color:#002060'>STATE:<span
@@ -685,7 +719,6 @@ style='mso-tab-count:1'>       </span></span>MRS. DIANA DAVID<span
 style='color:#002060'><o:p></o:p></span></span></b></p>
 
 <div align=center>
-
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=1030
  style='width:772.3pt;border-collapse:collapse;border:none;mso-border-alt:solid black .5pt;
  mso-border-themecolor:text1;mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
@@ -974,7 +1007,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{$report->maths_ca_b[0]}}</span></b></p>
+  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{ $report->maths_ca_b[0] }}</span></b></p>
   </td>
   <td width=30 valign=bottom style='width:22.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -984,7 +1017,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{$report->maths_ca_b[1]}}</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->maths_ca_b[1] }}</span></b></p>
   </td>
   <td width=30 valign=bottom style='width:22.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -994,7 +1027,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{$report->maths_ca_b[2]}}</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->maths_ca_b[2] }}</span></b></p>
   </td>
   <td width=30 valign=bottom style='width:22.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1004,7 +1037,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNoSpacing><b style='mso-bidi-font-weight:normal'><span
   style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'><span
-  style='mso-spacerun:yes'>  </span>{{$report->maths_ca_b[3]}}</span></b></p>
+  style='mso-spacerun:yes'>  </span>{{ $report->maths_ca_b[3] }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1014,7 +1047,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{$report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]}}<o:p></o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3] }}<o:p></o:p></span></b></p>
   </td>
   <td width=36 valign=bottom style='width:27.0pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1024,7 +1057,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{$report->maths_ca_ex}}</span></b></p>
+  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'> {{ $report->maths_ca_ex }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1034,7 +1067,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{$report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]+$report->maths_ca_ex}}<o:p></o:p></span></b></p>
+  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{ $report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]+$report->maths_ca_ex }}<o:p></o:p></span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1044,21 +1077,8 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>
-    @php
-        $total = $report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]+$report->maths_ca_ex;
-        if($total < 50 && $total > 39){
-          echo "D";
-        }else if($total < 39){
-          echo "F";
-        }else if($total >= 50 && $total < 60 ){
-          echo 'C';
-        }else if($total >= 60  && $total < 70 ){
-          echo 'B';
-        }else if($total >= 70  && $total <= 100 ){
-          echo 'A';
-        }
-    @endphp
+  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{ grade($report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]+$report->maths_ca_ex) }}
+  
   <o:p></o:p></span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
@@ -1099,22 +1119,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:8.5pt'>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'><b style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;
-  font-family:"Times New Roman","serif";color:#002060'>
-  @php
-    $total = $report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]+$report->maths_ca_ex;
-    if($total < 50 && $total > 39){
-      echo "Poor";
-    }else if($total < 39){
-      echo "Fair";
-    }else if($total >= 50 && $total < 60 ){
-      echo 'Good';
-    }else if($total >= 60  && $total < 70 ){
-      echo 'V.Good';
-    }else if($total >= 70  && $total <= 100 ){
-      echo 'Excellent';
-    }
-  @endphp
-</span></b></p>
+  font-family:"Times New Roman","serif";color:#002060'>{{ remark($report->maths_ca_b[0]+$report->maths_ca_b[1]+$report->maths_ca_b[2]+$report->maths_ca_b[3]+$report->maths_ca_ex) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:4;height:3.25pt'>
@@ -1247,22 +1252,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt;height:3.25pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>
-  @php
-  $total = $report->wd_ca_b[0]+$report->wd_ca_b[1]+$report->wd_ca_b[2]+$report->wd_ca_b[3]+$report->wd_ex_b;
-  if($total < 50 && $total > 39){
-    echo "D";
-  }else if($total < 39){
-    echo "F";
-  }else if($total >= 50 && $total < 60 ){
-    echo 'C';
-  }else if($total >= 60  && $total < 70 ){
-    echo 'B';
-  }else if($total >= 70  && $total <= 100 ){
-    echo 'A';
-  }
-@endphp
-</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->wd_ca_b[0]+$report->wd_ca_b[1]+$report->wd_ca_b[2]+$report->wd_ca_b[3]+$report->wd_ex_b) }}<o:p></o:p></span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1301,22 +1291,8 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   mso-border-left-themecolor:text1;mso-border-alt:solid black .5pt;mso-border-themecolor:
   text1;padding:0in 5.4pt 0in 5.4pt;height:3.25pt'>
   <p class=MsoNoSpacing><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>
-  @php
-    $total = $report->wd_ca_b[0]+$report->wd_ca_b[1]+$report->wd_ca_b[2]+$report->wd_ca_b[3]+$report->wd_ex_b;
-    if($total < 50 && $total > 39){
-      echo "Fair";
-    }else if($total < 39){
-      echo "Poor";
-    }else if($total >= 50 && $total < 60 ){
-      echo 'Good';
-    }else if($total >= 60  && $total < 70 ){
-      echo 'V.Good';
-    }else if($total >= 70  && $total <= 100 ){
-      echo 'Excellent';
-    }
-  @endphp
-</td>
+  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{ remark($report->wd_ca_b[0]+$report->wd_ca_b[1]+$report->wd_ca_b[2]+$report->wd_ca_b[3]+$report->wd_ex_b) }}</span></b></p>
+  </td>
  </tr>
  <tr style='mso-yfti-irow:5'>
   <td width=75 valign=top style='width:56.05pt;border:solid black .5pt;
@@ -1515,7 +1491,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->ss_10_b[0]+$report->ss_10_b[1]+$report->ss_10_b[2]+$report->ss_10_b[3]+$report->ss_10_b_exam) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1555,7 +1531,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>ss_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->ss_10_b[0]+$report->ss_10_b[1]+$report->ss_10_b[2]+$report->ss_10_b[3]+$report->ss_10_b_exam) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6'>
@@ -1759,7 +1735,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->eng_ca_b[0]+$report->eng_ca_b[1]+$report->eng_ca_b[2]+$report->eng_ca_b[3]+$report->eng_ex_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -1799,7 +1775,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>eng_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->eng_ca_b[0]+$report->eng_ca_b[1]+$report->eng_ca_b[2]+$report->eng_ca_b[3]+$report->eng_ex_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:7'>
@@ -1980,7 +1956,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->pe_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->pe_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2000,7 +1976,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->pe_ca_b[0]+$report->pe_ca_b[1]+$report->pe_ca_b[2]+$report->pe_ca_b[3]+$report->pe_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2040,7 +2016,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>pe_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->pe_ca_b[0]+$report->pe_ca_b[1]+$report->pe_ca_b[2]+$report->pe_ca_b[3]+$report->pe_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:8'>
@@ -2223,7 +2199,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->comp_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->comp_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2243,7 +2219,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->comp_ca_b[0]+$report->comp_ca_b[1]+$report->comp_ca_b[2]+$report->comp_ca_b[3]+$report->comp_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2283,7 +2259,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>comp_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->comp_ca_b[0]+$report->comp_ca_b[1]+$report->comp_ca_b[2]+$report->comp_ca_b[3]+$report->comp_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:9'>
@@ -2455,7 +2431,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->lcw_ca_b[0]+ $report->lcw_ca_b[1]+ $report->lcw_ca_b[2]+ $report->lcw_ca_b[3]}}</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->lcw_ca_b[0]+$report->lcw_ca_b[1]+$report->lcw_ca_b[2]+$report->lcw_ca_b[3] }}</span></b></p>
   </td>
   <td width=36 valign=bottom style='width:27.0pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2465,7 +2441,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->lcw_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->lcw_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2475,7 +2451,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->lcw_ca_b[0]+$report->lcw_ca_b[1]+$report->lcw_ca_b[2]+$report->lcw_ca_b[3]+$report->lcw_exam_b}}</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->lcw_ca_b[0]+$report->lcw_ca_b[1]+$report->lcw_ca_b[2]+$report->lcw_ca_b[3]+$report->lcw_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2485,7 +2461,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->lcw_ca_b[0]+$report->lcw_ca_b[1]+$report->lcw_ca_b[2]+$report->lcw_ca_b[3]+$report->lcw_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2525,7 +2501,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-"Times New Roman","serif";color:#002060'>lcw_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->lcw_ca_b[0]+$report->lcw_ca_b[1]+$report->lcw_ca_b[2]+$report->lcw_ca_b[3]+$report->lcw_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:10'>
@@ -2707,7 +2683,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->pen_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->pen_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2717,7 +2693,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->pen_ca_b[0]+$report->pen_ca_b[1]+$report->pen_ca_b[2]+$report->pen_ca_b[3]+$report->pen_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2727,7 +2703,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->pen_ca_b[0]+$report->pen_ca_b[1]+$report->pen_ca_b[2]+$report->pen_ca_b[3]+$report->pen_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2767,8 +2743,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>
-  pen_remark_b Excellent</span></b></p>
+  style='font-size:8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{ remark($report->pen_ca_b[0]+$report->pen_ca_b[1]+$report->pen_ca_b[2]+$report->pen_ca_b[3]+$report->pen_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:11'>
@@ -2950,7 +2925,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->sc_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->sc_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -2970,7 +2945,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->sc_ca_b[0]+$report->sc_ca_b[1]+$report->sc_ca_b[2]+$report->sc_ca_b[3]+$report->sc_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3010,7 +2985,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>sc_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->sc_ca_b[0]+$report->sc_ca_b[1]+$report->sc_ca_b[2]+$report->sc_ca_b[3]+$report->sc_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:12'>
@@ -3184,7 +3159,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->ld_ca_b[0]+$report->ld_ca_b[1]+$report->ld_ca_b[2]+$report->ld_ca_b[3] }}</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->ld_ca_b[0]+$report->ld_ca_b[1]+$report->ld_ca_b[2]+$report->ld_ca_b[3] }}<o:p></o:p></span></b></p>
   </td>
   <td width=36 valign=bottom style='width:27.0pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3194,7 +3169,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->ld_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->ld_exam_b }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3204,7 +3179,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->ld_ca_b[0]+$report->ld_ca_b[1]+$report->ld_ca_b[2]+$report->ld_ca_b[3]+$report->ld_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->ld_ca_b[0]+$report->ld_ca_b[1]+$report->ld_ca_b[2]+$report->ld_ca_b[3]+$report->ld_exam_b }}<o:p></o:p></span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3214,7 +3189,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>B<o:p></o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->ld_ca_b[0]+$report->ld_ca_b[1]+$report->ld_ca_b[2]+$report->ld_ca_b[3]+$report->ld_exam_b) }}<o:p></o:p></span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3254,7 +3229,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>ld_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->ld_ca_b[0]+$report->ld_ca_b[1]+$report->ld_ca_b[2]+$report->ld_ca_b[3]+$report->ld_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:13'>
@@ -3435,7 +3410,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->jet_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->jet_exam_b }} </span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3455,7 +3430,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->jet_ca_b[0]+$report->jet_ca_b[1]+$report->jet_ca_b[2]+$report->jet_ca_b[3]+$report->jet_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3495,7 +3470,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>jet_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->jet_ca_b[0]+$report->jet_ca_b[1]+$report->jet_ca_b[2]+$report->jet_ca_b[3]+$report->jet_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:14'>
@@ -3678,7 +3653,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->hm_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->hm_exam_b }} </span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3698,7 +3673,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->hm_ca_b[0]+$report->hm_ca_b[1]+$report->hm_ca_b[2]+$report->hm_ca_b[3]+$report->hm_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3738,7 +3713,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>hm_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->hm_ca_b[0]+$report->hm_ca_b[1]+$report->hm_ca_b[2]+$report->hm_ca_b[3]+$report->hm_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:15'>
@@ -3921,7 +3896,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->ma_exam_b }}</span></b></p>
+  "Times New Roman","serif";color:#002060'> {{ $report->ma_exam_b }} </span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3941,7 +3916,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->ma_ca_b[0]+$report->ma_ca_b[1]+$report->ma_ca_b[2]+$report->ma_ca_b[3]+$report->ma_exam_b) }}</span></b></p>
   </td>
   <td width=48 valign=bottom style='width:.5in;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -3981,7 +3956,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>ma_remark_b Excellent</span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->ma_ca_b[0]+$report->ma_ca_b[1]+$report->ma_ca_b[2]+$report->ma_ca_b[3]+$report->ma_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:16'>
@@ -4151,7 +4126,9 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   mso-border-left-themecolor:text1;mso-border-alt:solid black .5pt;mso-border-themecolor:
   text1;padding:0in 5.4pt 0in 5.4pt'><p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'>{{ $report->cf_ca_b[0]+$report->cf_ca_b[1]+$report->cf_ca_b[2]+$report->cf_ca_b[3] }}</span></b></p></td>
+  "Times New Roman","serif";color:#002060'>{{ $report->cf_ca_b[0]+$report->cf_ca_b[1]+$report->cf_ca_b[2]+$report->cf_ca_b[3] }}</span></b><span style='font-size:
+  8.0pt;font-family:"Times New Roman","serif";color:#002060'><o:p></o:p></span></p>
+  </td>
   <td width=110 valign=bottom style='width:1.15in;border-top:none;border-left:
   none;border-bottom: solid black .5pt;mso-border-bottom-themecolor:text1;
   border-right: solid black .5pt;mso-border-right-themecolor:text1;mso-border-top-alt:
@@ -4160,8 +4137,8 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'></span></b><span style='font-size:
-  8.0pt;font-family:"Times New Roman","serif";color:#002060'>{{ $report->cf_exam_b }}</span></p>
+  "Times New Roman","serif";color:#002060'>{{ $report->cf_exam_b }}</span></b><span style='font-size:
+  8.0pt;font-family:"Times New Roman","serif";color:#002060'><o:p></o:p></span></p>
   </td>
   <td width=42 valign=bottom style='width:31.4pt;border-top:none;border-left:
   none;border-bottom: solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4181,7 +4158,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><o:p>&nbsp;</o:p></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ grade($report->cf_ca_b[0]+$report->cf_ca_b[1]+$report->cf_ca_b[2]+$report->cf_ca_b[3]+$report->cf_exam_b) }}</span></b></p>
   </td>
   <td width=46 valign=bottom style='width:34.2pt;border-top:none;border-left:
   none;border-bottom: solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4221,8 +4198,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNoSpacing align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;font-family:
-  "Times New Roman","serif";color:#002060'><INPUT TYPE="text" NAME="cf_remark_b"
-  id="" style="width: 100px" placeholder=Excellent></span></b></p>
+  "Times New Roman","serif";color:#002060'>{{ remark($report->cf_ca_b[0]+$report->cf_ca_b[1]+$report->cf_ca_b[2]+$report->cf_ca_b[3]+$report->cf_exam_b) }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:17'>
@@ -4545,7 +4521,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
 <div align=center>
 
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
- style='width:910.3pt;margin:0 auto;border-collapse:collapse;border:none;mso-border-alt:
+ style='width:777.3pt;margin:0 auto;border-collapse:collapse;border:none;mso-border-alt:
  solid black .5pt;mso-border-themecolor:text1;mso-yfti-tbllook:480;mso-padding-alt:
  0in 5.4pt 0in 5.4pt'>
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
@@ -4888,7 +4864,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->wi_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->wi_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4899,7 +4875,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->wi_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->wi_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4910,7 +4886,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->wi_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->wi_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4921,7 +4897,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->wi_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->wi_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4931,7 +4907,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->wi_grad_c[4] }}</b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->wi_grad_c[4] }}</b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4951,7 +4927,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->punc_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->punc_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4962,7 +4938,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->punc_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->punc_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4973,7 +4949,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->punc_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->punc_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4984,7 +4960,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->punc_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->punc_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -4995,7 +4971,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->punc_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->punc_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:4'>
@@ -5015,7 +4991,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->dndo_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->dndo_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5026,7 +5002,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->dndo_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->dndo_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5037,7 +5013,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->dndo_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->dndo_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5048,7 +5024,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->dndo_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->dndo_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5058,7 +5034,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->dndo_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->dndo_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5078,7 +5054,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->flx_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->flx_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5089,7 +5065,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->flx_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->flx_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5100,7 +5076,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->flx_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->flx_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5111,7 +5087,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->flx_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->flx_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5122,7 +5098,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->flx_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->flx_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:5'>
@@ -5142,7 +5118,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->tcom_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->tcom_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5153,7 +5129,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->tcom_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->tcom_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5164,7 +5140,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->tcom_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->tcom_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5175,7 +5151,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->tcom_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->tcom_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5185,7 +5161,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->tcom_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->tcom_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5205,7 +5181,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->crea_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->crea_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5216,7 +5192,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->crea_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->crea_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5227,7 +5203,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->crea_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->crea_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5238,7 +5214,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->crea_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->crea_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5249,7 +5225,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->crea_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->crea_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6'>
@@ -5269,7 +5245,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->cwr_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->cwr_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5280,7 +5256,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->cwr_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->cwr_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5291,7 +5267,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->cwr_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->cwr_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5302,7 +5278,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->cwr_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->cwr_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5312,7 +5288,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->cwr_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->cwr_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5332,7 +5308,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->go_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->go_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5343,7 +5319,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->go_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->go_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5354,7 +5330,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->go_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->go_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5365,7 +5341,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->go_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->go_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5376,7 +5352,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->go_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->go_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:7'>
@@ -5397,7 +5373,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ara_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ara_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5408,7 +5384,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ara_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ara_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5419,7 +5395,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ara_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ara_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5430,7 +5406,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ara_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ara_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5440,7 +5416,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->ara_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->ara_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5460,7 +5436,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->polit_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->polit_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5471,7 +5447,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->polit_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->polit_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5482,7 +5458,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->polit_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->polit_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5493,7 +5469,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->polit_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->polit_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5504,7 +5480,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->polit_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->polit_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:8'>
@@ -5524,7 +5500,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ic_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ic_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5535,7 +5511,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ic_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ic_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5546,7 +5522,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ic_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ic_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5557,7 +5533,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->ic_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->ic_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5567,7 +5543,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->ic_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->ic_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5587,7 +5563,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gs_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->gs_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5598,7 +5574,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gs_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->gs_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5609,7 +5585,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gs_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->gs_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5620,7 +5596,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gs_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->gs_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5631,7 +5607,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gs_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->gs_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:9'>
@@ -5652,7 +5628,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->gawo_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->gawo_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5663,7 +5639,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->gawo_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->gawo_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5674,7 +5650,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->gawo_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->gawo_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5685,7 +5661,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->gawo_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->gawo_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5695,7 +5671,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->gawo_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->gawo_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5715,7 +5691,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->h_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->h_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5726,7 +5702,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->h_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->h_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5737,7 +5713,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->h_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->h_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5748,7 +5724,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->h_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->h_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5759,7 +5735,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->h_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->h_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:10'>
@@ -5779,7 +5755,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->esc_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->esc_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5790,7 +5766,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->esc_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->esc_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5801,7 +5777,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->esc_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->esc_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5812,7 +5788,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->esc_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->esc_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5822,7 +5798,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->esc_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->esc_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5842,7 +5818,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->sc_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->sc_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5853,7 +5829,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->sc_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->sc_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5864,7 +5840,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->sc_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->sc_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5875,7 +5851,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->sc_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->sc_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5886,7 +5862,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->sc_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->sc_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:11'>
@@ -5907,7 +5883,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->srfa_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->srfa_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5918,7 +5894,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->srfa_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->srfa_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5929,7 +5905,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->srfa_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->srfa_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5940,7 +5916,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->srfa_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->srfa_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5950,7 +5926,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->srfa_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->srfa_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5970,7 +5946,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gene_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->gene_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5981,7 +5957,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gene_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->gene_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -5992,7 +5968,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gene_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->gene_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6003,7 +5979,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gene_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->gene_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6014,7 +5990,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->gene_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->gene_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:12'>
@@ -6035,7 +6011,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->rwtc_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->rwtc_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6046,7 +6022,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->rwtc_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->rwtc_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6057,7 +6033,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->rwtc_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->rwtc_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6068,7 +6044,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->rwtc_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->rwtc_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6078,7 +6054,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->rwtc_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->rwtc_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6098,7 +6074,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->relia_grad_c[0] }}</span></b></p>
+  color:#002060'> {{ $report->relia_grad_c[0] }}</span></b></p>
   </td>
   <td width=47 valign=bottom style='width:35.45pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6109,7 +6085,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->relia_grad_c[1] }}</span></b></p>
+  color:#002060'> {{ $report->relia_grad_c[1] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6120,7 +6096,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->relia_grad_c[2] }}</span></b></p>
+  color:#002060'> {{ $report->relia_grad_c[2] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6131,7 +6107,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->relia_grad_c[3] }}</span></b></p>
+  color:#002060'> {{ $report->relia_grad_c[3] }}</span></b></p>
   </td>
   <td width=57 valign=bottom style='width:42.5pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6142,7 +6118,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:#002060'>{{ $report->relia_grad_c[4] }}</span></b></p>
+  color:#002060'> {{ $report->relia_grad_c[4] }}</span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:13'>
@@ -6162,7 +6138,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->pss_grad_c[0] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->pss_grad_c[0] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6173,7 +6149,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->pss_grad_c[1] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->pss_grad_c[1] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6184,7 +6160,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->pss_grad_c[2] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->pss_grad_c[2] }}</span></b></p>
   </td>
   <td width=38 valign=bottom style='width:28.35pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6195,7 +6171,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
   style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif";
-  color:black;mso-themecolor:text1'>{{ $report->pss_grad_c[3] }}</span></b></p>
+  color:black;mso-themecolor:text1'> {{ $report->pss_grad_c[3] }}</span></b></p>
   </td>
   <td width=39 valign=bottom style='width:29.55pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6205,7 +6181,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   text1;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b style='mso-bidi-font-weight:normal'><span
-  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'>{{ $report->pss_grad_c[4] }}</span></b></p>
+  style='font-size:6.0pt;mso-bidi-font-size:8.0pt;font-family:"Times New Roman","serif"'> {{ $report->pss_grad_c[4] }}</span></b></p>
   </td>
   <td width=168 valign=top style='width:125.65pt;border-top:none;border-left:
   none;border-bottom:solid black .5pt;mso-border-bottom-themecolor:text1;
@@ -6509,7 +6485,7 @@ normal'><span style='font-size:4.0pt;mso-bidi-font-size:10.0pt;font-family:
   </td>
  </tr>
 </table>
-{{-- <input type="submit" value="submit">
+{{-- <input type="submit"submit">
 </form> --}}
 </div>
 
