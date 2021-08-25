@@ -182,6 +182,13 @@
                     </li>
                 @endif
 
+                {{--Manage Learning Materials--}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item">
+                        <a href="{{ route('materials.index') }}" class="nav-link"><i class="icon-book"></i> <span> Learning Materials</span></a>
+                    </li>
+                @endif
+
                 @if(Qs::userIsTeamSA())
                     {{--Manage Users--}}
                     <li class="nav-item">

@@ -22,4 +22,8 @@ class MyClass extends Eloquent
     {
         return $this->hasMany(StudentRecord::class);
     }
+
+    public function learning_materials(){
+        return $this->hasMany('App\Models\LearningMaterial');
+    }
 }

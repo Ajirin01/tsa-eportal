@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class CurrentAffairController extends Controller
+class GalleryCategoryController extends Controller
 {
     public function __construct(UserRepo $user, LocationRepo $loc, MyClassRepo $my_class)
     {
@@ -29,13 +29,13 @@ class CurrentAffairController extends Controller
     public function index()
     {
         $current_affair = CurrentAffair::all();
-        return view('pages.support_team.current_affairs.index', ['current_affairs'=> $current_affair]);
+        return view('pages.support_team.current_affairs.index', ['categories'=> $current_affair]);
     }
 
     public function create()
     {
         $current_affair = CurrentAffair::all();
-        return view('pages.support_team.current_affairs.index', ['current_affairs'=> $current_affair]);
+        return view('pages.support_team.current_affairs.index', ['categories'=> $current_affair]);
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class CurrentAffairController extends Controller
             return redirect()->back()->with('pop_error', $validator->errors());
         }else{
             $data= [];
-            $data['category'] = $request->title;
+            $data['title'] = $request->title;
             $data['description'] = $request->description;
             CurrentAffair::create($data);
             return Qs::jsonStoreOk();
@@ -80,7 +80,7 @@ class CurrentAffairController extends Controller
         // return response()->json($request->all());
         $event_category_to_update = CurrentAffair::find($id);
         $data = [];
-        $data['category'] = $request->title;
+        $data['title'] = $request->title;
         $data['description'] = $request->description;
 
         $event_category_to_update->update($data);
