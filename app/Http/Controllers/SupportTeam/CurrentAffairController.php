@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class GalleryCategoryController extends Controller
+class CurrentAffairController extends Controller
 {
     public function __construct(UserRepo $user, LocationRepo $loc, MyClassRepo $my_class)
     {
@@ -29,13 +29,13 @@ class GalleryCategoryController extends Controller
     public function index()
     {
         $current_affair = CurrentAffair::all();
-        return view('pages.support_team.current_affairs.index', ['categories'=> $current_affair]);
+        return view('pages.support_team.current_affairs.index', ['current_affairs'=> $current_affair]);
     }
 
     public function create()
     {
         $current_affair = CurrentAffair::all();
-        return view('pages.support_team.current_affairs.index', ['categories'=> $current_affair]);
+        return view('pages.support_team.current_affairs.index', ['current_affairs'=> $current_affair]);
     }
 
     public function store(Request $request)

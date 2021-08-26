@@ -45,7 +45,7 @@
                                 <td><img class="rounded-circle" style="height: 40px; width: 40px;" src="{{ $s->user->photo }}" alt="photo"></td>
                                 <td>{{ $s->user->name }}</td>
                                 
-                                <td><a href="{{ route('report_form',['class'=> 'L&R', 'student_id'=> preg_replace("./.","-", $s->adm_no)]) }}">report</a></td>
+                                <td><a href="{{ route('report_form',['class'=> $my_class->name, 'student_id'=> preg_replace("./.","-", $s->adm_no)]) }}">report</a></td>
                                 {{-- <td><a href="{{ url('report-form/L&B/1') }}">report</a></td> --}}
                                 
                             </tr>

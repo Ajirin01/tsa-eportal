@@ -11,7 +11,7 @@
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
                 <li class="nav-item"><a href="#all-current_affairs" class="nav-link active" data-toggle="tab">Manage Current Affair</a></li>
-                <li class="nav-item"><a href="#new-class" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Category</a></li>
+                <li class="nav-item"><a href="#new-class" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Current Affair</a></li>
             </ul>
 
             <div class="tab-content">
@@ -21,7 +21,7 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Title</th>
-                                {{-- <th>Gallery Type</th> --}}
+                                {{-- <th>Current Affair Type</th> --}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -65,7 +65,7 @@
                             <div class="alert alert-info border-0 alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
 
-                                <span>When a category is created, a Section will be automatically created for the Category, you can edit it or add more sections to the class at <a target="_blank" href="{{ route('sections.index') }}">Manage Sections</a></span>
+                                <span>When a current affair is created, a Section will be automatically created for the Current Affair, you can edit it or add more sections to the class at <a target="_blank" href="{{ route('sections.index') }}">Manage Sections</a></span>
                             </div>
                         </div>
                     </div>
@@ -78,19 +78,19 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <input name="title" value="{{ old('title') }}" required type="text" class="form-control" placeholder="Name of Gallery">
+                                        <input name="title" value="{{ old('title') }}" required type="text" class="form-control" placeholder="Name of Current Affair">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="d-block">Upload Gallery Description:</label>
+                                    <label class="d-block">Upload Current Affair Description:</label>
                                     <textarea class="form-control" name="description" id="" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
 
                                 {{-- <div class="form-group row">
-                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Gallery Type</label>
+                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Current Affair Type</label>
                                     <div class="col-lg-9">
-                                        <select required data-placeholder="Select Gallery Type" class="form-control select" name="class_type_id" id="class_type_id">
+                                        <select required data-placeholder="Select Current Affair Type" class="form-control select" name="class_type_id" id="class_type_id">
                                             @foreach($class_types as $ct)
                                                 <option {{ old('class_type_id') == $ct->id ? 'selected' : '' }} value="{{ $ct->id }}">{{ $ct->name }}</option>
                                             @endforeach
@@ -110,6 +110,6 @@
         </div>
     </div>
 
-    {{--Gallery List Ends--}}
+    {{--Current Affair List Ends--}}
 
 @endsection

@@ -1,0 +1,337 @@
+{
+    "_token": "30xYIQyFcX2PrCmWRWQqVi9QqER1gf5kyiTIMJ04",
+    "maths_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "maths_ca_ex": null,
+    "eng_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "eng_ex_b": null,
+    "maths_thous_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "wb_10_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "wb_b_exam": null,
+    "maths_per_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "ss_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "ss_ex_b": null,
+    "eng_thous_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "pe_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "pe_exam_b": null,
+    "eng_per_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "comp_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "comp_exam_b": null,
+    "lt_thous_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "lcw_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "lcw_exam_b": null,
+    "lt_per_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "civ_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "civ_exam_b": null,
+    "ss_thous_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "sc_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "sc_exam_b": null,
+    "ss_per_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "ld_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "ld_exam_b": null,
+    "sc_thous_a": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "jet_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "jet_exam_b": null,
+    "sc_per_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "hm_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "hm_exam_b": null,
+    "wd_thous_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "ma_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "ma_exam_b": null,
+    "wb_per_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "cf_ca_b": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "cf_exam_b": null,
+    "cf_remark_b": null,
+    "supervisor_c": null,
+    "head_teacher_c": null,
+    "fd_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "nt_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "wi_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "punc_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "dndo_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "flx_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tcom_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "crea_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "cwr_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "go_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "ara_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "polit_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "ic_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "gs_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "gawo_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "h_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "esc_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "sc_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "srfa_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "gene_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "rwtc_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "relia_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "pss_grad_c": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  }

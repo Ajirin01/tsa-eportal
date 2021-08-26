@@ -29,10 +29,12 @@ class ReportController extends Controller
                 // return response()->json($report);
                 // return response()->json("hello");
             }
-            return view('pages.report.learning_to_read',['student_id'=> $student_id, 'report'=> json_decode($report)]);
+            return view('pages.report.learning_to_read',['student_id'=> $student_id, 'report'=> json_decode($report), 'class'=> $class]);
         }else if($class == 'M&L'){
+            
             if($report != null){
-                $report = $report;
+                // return response()->json($report);
+                $report = $report->report;
             }else{
                 define("report", "ML.json");
                 $report = file_get_contents(report);
@@ -40,10 +42,10 @@ class ReportController extends Controller
                 $report = json_encode($report->report);
                 // return response()->json($report);
             }
-            return view('pages.report.main_learning',['student_id'=> $student_id, 'report'=> json_decode($report)]);
+            return view('pages.report.main_learning',['student_id'=> $student_id, 'report'=> json_decode($report), 'class'=> $class]);
         }else if($class == 'sbs1'){
             if($report != null){
-                $report = $report;
+                $report = $report->report;
             }else{
                 define("report", "sbs1.json");
                 $report = file_get_contents(report);
@@ -51,10 +53,10 @@ class ReportController extends Controller
                 $report = json_encode($report->report);
                 // return response()->json($report);
             }
-            return view('pages.report.step_by_step_1',['student_id'=> $student_id, 'report'=> json_decode($report)]);
+            return view('pages.report.step_by_step_1',['student_id'=> $student_id, 'report'=> json_decode($report), 'class'=> $class]);
         }else if($class == 'sbs2'){
             if($report != null){
-                $report = $report;
+                $report = $report->report;
             }else{
                 define("report", "sbs2.json");
                 $report = file_get_contents(report);
@@ -62,10 +64,10 @@ class ReportController extends Controller
                 $report = json_encode($report->report);
                 // return response()->json($report);
             }
-            return view('pages.report.step_by_step_2',['student_id'=> $student_id, 'report'=> json_decode($report)]);
+            return view('pages.report.step_by_step_2',['student_id'=> $student_id, 'report'=> json_decode($report), 'class'=> $class]);
         }else if($class == 'R&B'){
             if($report != null){
-                $report = $report;
+                $report = $report->report;
             }else{
                 define("report", "RB.json");
                 $report = file_get_contents(report);
@@ -73,7 +75,7 @@ class ReportController extends Controller
                 $report = json_encode($report->report);
                 // return response()->json($report);
             }
-            return view('pages.report.reading_basic',['student_id'=> $student_id, 'report'=> json_decode($report)]);
+            return view('pages.report.reading_basic',['student_id'=> $student_id, 'report'=> json_decode($report), 'class'=> $class]);
         }
         
         // return response()->json("report form");

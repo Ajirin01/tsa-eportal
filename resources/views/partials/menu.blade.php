@@ -189,6 +189,13 @@
                     </li>
                 @endif
 
+                {{--Manage Learning Materials--}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item">
+                        <a href="{{ route('current-affairs.index') }}" class="nav-link"><i class="icon-book"></i> <span> Current Affairs</span></a>
+                    </li>
+                @endif
+
                 @if(Qs::userIsTeamSA())
                     {{--Manage Users--}}
                     <li class="nav-item">

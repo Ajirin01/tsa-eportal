@@ -686,7 +686,7 @@ style='mso-tab-count:1'><o:p>&nbsp;</o:p></span></span>MRS. DIANA DAVID<span
 style='color:#002060'><o:p></o:p></span></span></b></p>
 
 <div align=center>
-<form action="{{ route('submit_report', ['class'=>'M&L','student_id'=>$student_id]) }}" method="post">
+<form action="{{ route('submit_report', ['class'=>'M&L','student_id'=> preg_replace("./.","-", $student_id)]) }}" method="post">
   @csrf
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=1030
  style='width:772.3pt;border-collapse:collapse;border:none;mso-border-alt:solid black .5pt;
@@ -1235,7 +1235,7 @@ style='color:#002060'><o:p></o:p></span></span></b></p>
     text1;padding:0in 5.4pt 0in 5.4pt'>
     <p class=MsoNoSpacing align=center style='text-align:center'><b
     style='mso-bidi-font-weight:normal'><span style='font-size:6.0pt;font-family:
-    "Times New Roman","serif";color:#002060'><input style="width: 50px" type="text" name="maths_per_a[]" id="" placeholder="1003"></span></b></p>
+    "Times New Roman","serif";color:#002060'><input value="{{ $report->maths_per_a[$i] }}" style="width: 50px" type="text" name="maths_thous_a[]" id="" placeholder="1003"></span></b></p>
     </td>
   @endfor
   
