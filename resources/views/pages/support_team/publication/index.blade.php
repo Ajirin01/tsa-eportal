@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('page_title', 'Manage Gelleries')
+@section('page_title', 'Manage Publications')
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Manage Gelleries</h6>
+            <h6 class="card-title">Manage Publications</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="nav-item"><a href="#all-galleries" class="nav-link active" data-toggle="tab">Manage Gelleries</a></li>
-                <li class="nav-item"><a href="#new-class" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Gellery</a></li>
+                <li class="nav-item"><a href="#all-galleries" class="nav-link active" data-toggle="tab">Manage Publications</a></li>
+                <li class="nav-item"><a href="#new-class" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Publication</a></li>
             </ul>
 
             <div class="tab-content">
@@ -21,16 +21,16 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Title</th>
-                                {{-- <th>Gellery Type</th> --}}
+                                {{-- <th>Publication Type</th> --}}
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($galleries as $gallery)
+                            @foreach($galleries as $publication)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $gallery->title }}</td>
-                                    {{-- <td>{{ $gallery->class_type->name }}</td> --}}
+                                    <td>{{ $publication->title }}</td>
+                                    {{-- <td>{{ $publication->class_type->name }}</td> --}}
                                     <td class="text-center">
                                         <div class="list-icons">
                                             <div class="dropdown">
@@ -41,12 +41,12 @@
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     @if(Qs::userIsTeamSA())
                                                     {{--Edit--}}
-                                                    <a href="{{ route('gallery.edit', $gallery->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                    <a href="{{ route('publication.edit', $publication->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
                                                    @endif
                                                         @if(Qs::userIsSuperAdmin())
                                                     {{--Delete--}}
-                                                    <a id="{{ $gallery->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
-                                                    <form method="post" id="item-delete-{{ $gallery->id }}" action="{{ route('gallery.destroy', $gallery->id) }}" class="hidden">@csrf @method('delete')</form>
+                                                    <a id="{{ $publication->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                    <form method="post" id="item-delete-{{ $publication->id }}" action="{{ route('publication.destroy', $publication->id) }}" class="hidden">@csrf @method('delete')</form>
                                                         @endif
 
                                                 </div>
@@ -65,37 +65,48 @@
                             <div class="alert alert-info border-0 alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
 
-                                <span>When a gallery is created, a Section will be automatically created for the class, you can edit it or add more sections to the class at <a target="_blank" href="{{ route('sections.index') }}">Manage Sections</a></span>
+                                <span>When a publication is created, a Section will be automatically created for the class, you can edit it or add more sections to the class at <a target="_blank" href="{{ route('sections.index') }}">Manage Sections</a></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <form class="ajax-store" method="post" action="{{ route('gallery.store') }}" enctype="multipart/form-data">
-                            {{-- <form method="post" action="{{ route('gallery.store') }}" enctype="multipart/form-data"> --}}
+                            <form class="ajax-store" method="post" action="{{ route('publication.store') }}" enctype="multipart/form-data">
+                            {{-- <form method="post" action="{{ route('publication.store') }}" enctype="multipart/form-data"> --}}
                                 @csrf
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">Category <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <input name="title" value="{{ old('title') }}" required type="text" class="form-control" placeholder="Name of Gellery">
+                                        <select name="category" id="" class="form-control">
+                                            <option value="">please Category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="d-block">Upload Gellery Photo:</label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <input name="title" value="{{ old('title') }}" required type="text" class="form-control" placeholder="Name of Publication">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="d-block">Upload Publication Photo:</label>
                                     <input accept="image/*" type="file" name="photo[]" class="form-input-styled" data-fouc multiple>
                                     <span class="form-text text-muted">Accepted Images: jpeg, png. Max file size 2Mb</span>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="d-block">Upload Gellery Description:</label>
+                                    <label class="d-block">Upload Publication Description:</label>
                                     <textarea class="form-control" name="description" id="" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
 
                                 {{-- <div class="form-group row">
-                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Gellery Type</label>
+                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Publication Type</label>
                                     <div class="col-lg-9">
-                                        <select required data-placeholder="Select Gellery Type" class="form-control select" name="class_type_id" id="class_type_id">
+                                        <select required data-placeholder="Select Publication Type" class="form-control select" name="class_type_id" id="class_type_id">
                                             @foreach($class_types as $ct)
                                                 <option {{ old('class_type_id') == $ct->id ? 'selected' : '' }} value="{{ $ct->id }}">{{ $ct->name }}</option>
                                             @endforeach
@@ -115,6 +126,6 @@
         </div>
     </div>
 
-    {{--Gellery List Ends--}}
+    {{--Publication List Ends--}}
 
 @endsection
