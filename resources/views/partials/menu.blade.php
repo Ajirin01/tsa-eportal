@@ -189,6 +189,13 @@
                     </li>
                 @endif
 
+                {{--Webmail--}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item">
+                        <a href="http://webmail.trumpetsoundacademy.org" class="nav-link"><i class="icon-inbox"></i> <span> Webmail</span></a>
+                    </li>
+                @endif
+
                 {{--Manage Learning Materials--}}
                 @if(Qs::userIsTeamSAT())
                     <li class="nav-item">

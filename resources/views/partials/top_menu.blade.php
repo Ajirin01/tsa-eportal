@@ -18,6 +18,7 @@
             <i class="icon-paragraph-justify3"></i>
         </button>
     </div>
+    
 
     <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="navbar-nav">
@@ -26,6 +27,12 @@
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
+            {{--Webmail--}}
+            @if(Qs::userIsTeamSAT())
+                <li class="nav-item">
+                    <a class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block" style="color: white" href="http://webmail.trumpetsoundacademy.org" class="nav-link"><i class="icon-inbox"></i> <span> Webmail</span></a>
+                </li>
+            @endif
 
 
         </ul>
