@@ -196,10 +196,17 @@
                     </li>
                 @endif
 
-                {{--Manage Learning Materials--}}
+                {{--Manage Current Affairs--}}
                 @if(Qs::userIsTeamSAT())
                     <li class="nav-item">
                         <a href="{{ route('current-affairs.index') }}" class="nav-link"><i class="icon-book"></i> <span> Current Affairs</span></a>
+                    </li>
+                @endif
+
+                {{--Manage Vacancy Applications--}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item">
+                        <a href="{{ route('applications.index') }}" class="nav-link"><i class="icon-book"></i> <span>Manage Applications</span></a>
                     </li>
                 @endif
 

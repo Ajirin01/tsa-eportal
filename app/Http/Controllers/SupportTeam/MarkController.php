@@ -14,6 +14,7 @@ use App\Repositories\StudentRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\StudentRecord;
 
 class MarkController extends Controller
 {
@@ -146,7 +147,14 @@ class MarkController extends Controller
         $d = $req->only(['my_class_id', 'section_id']);
         $d['session'] = $data['year'] = $d2['year'] = $this->year;
 
-        $students = $this->student->getRecord($d)->get();
+        // return response()->json($d);
+
+        // $students = $this->student->getRecord($d)->get();
+
+        $students = StudentRecord::where('my_class_id', $req->my_class_id)->where('section_id', $req->section_id)->get();
+
+        // return response()->json($students);
+
         if($students->count() < 1){
             return back()->with('pop_error', __('msg.rnf'));
         }

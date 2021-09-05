@@ -19,12 +19,6 @@
         </button>
     </div>
     
-    {{--Webmail--}}
-    @if(Qs::userIsTeamSAT())
-    {{-- <li class="nav-item"> --}}
-        <a class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block" style="color: white" href="http://webmail.trumpetsoundacademy.org" class="nav-link"><i class="icon-inbox"></i> <span> Webmail</span></a>
-    {{-- </li> --}}
-    @endif
     <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -32,9 +26,13 @@
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
-            
 
-
+            {{--Webmail--}}
+        @if(Qs::userIsTeamSAT())
+        <li class="nav-item">
+            <a class="navbar-nav-link sidebar-control d-none d-md-block" style="color: white" href="http://webmail.trumpetsoundacademy.org" class="nav-link"><i class="icon-inbox"></i> <span> Webmail</span></a>
+        </li>
+        @endif
         </ul>
 
 			<span class="navbar-text ml-md-3 mr-md-auto"></span>
@@ -52,7 +50,7 @@
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('my_account') }}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+                    document.getElementById('logout-form').submit();" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
