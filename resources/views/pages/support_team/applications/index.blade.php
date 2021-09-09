@@ -48,11 +48,11 @@
                                                     {{--Edit--}}
                                                     <a href="{{ route('applications.show', $application->id) }}" class="dropdown-item"><i class="icon-pencil"></i> View</a>
                                                    @endif
-                                                        @if(Qs::userIsSuperAdmin())
-                                                        {{--Delete--}}
-                                                        <a id="{{ $application->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
-                                                        <form method="post" id="item-delete-{{ $application->id }}" action="{{ route('application.destroy', $application->id) }}" class="hidden">@csrf @method('delete')</form>
-                                                        @endif
+                                                    @if(Qs::userIsSuperAdmin())
+                                                    {{--Delete--}}
+                                                    <a id="{{ $application->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                    <form method="post" id="item-delete-{{ $application->id }}" action="{{ route('application.destroy', $application->id) }}" class="hidden">@csrf @method('delete')</form>
+                                                    @endif
 
                                                 </div>
                                             </div>

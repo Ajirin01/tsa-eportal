@@ -676,6 +676,16 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @if(Qs::userIsSuperAdmin())
+                                        {{--Delete--}}
+                                        <a id="{{ $application->id }}" href="#" class="dropdown-item"><i class="icon-trash"></i> Update Status</a>
+                                        <select class="select form-control" id="status " name="status " data-fouc data-placeholder="Choose.." required>
+                                            {{-- <option value=""></option> --}}
+                                            <option value="Approved">Approved</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Declined">Declined</option>
+                                        </select>
+                                        @endif
                                     </div>
                                 </fieldset>
                             </div>
