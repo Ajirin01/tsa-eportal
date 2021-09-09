@@ -60,8 +60,8 @@
                         </div>
                     </div>
                 </form>
-
             </div>
+            <a href="{{ url("https://trumpetsoundacademy.org/") }}" class="text-center">Back to homepage</a>
 
 
         </div>
