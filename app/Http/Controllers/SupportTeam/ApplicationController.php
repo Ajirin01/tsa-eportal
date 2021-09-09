@@ -95,7 +95,11 @@ class ApplicationController extends Controller
         $data['applicant_age'] = $request->applicant_age;
         $data['applicant_gender'] = $request->applicant_gender;
         $data['applicant_phone'] = $request->applicant_phone;
-        $data['status'] = 'pending';
+        if($request->has('status')){
+            $data['status'] = $request->status;
+        }else{
+            $data['status'] = 'reviewed';
+        }
         $data['form_data'] = json_encode($request->all());
 
         $application = Application::find($id);

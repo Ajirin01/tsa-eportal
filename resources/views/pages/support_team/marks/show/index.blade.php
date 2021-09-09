@@ -10,7 +10,7 @@
     </div>
 
  {{-- @include('pages.support_team.marks.show.'.$mark_type) --}}
- @include('pages.support_team.marks.show.nursery')
+ @include('pages.support_team.marks.show.LR')
 
 
     {{--Marks Index --}}

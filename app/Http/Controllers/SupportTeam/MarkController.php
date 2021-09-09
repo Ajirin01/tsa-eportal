@@ -84,7 +84,9 @@ class MarkController extends Controller
         $d['my_class'] = $mc = $this->my_class->getMC(['id' => $exr->first()->my_class_id])->first();
         $d['class_type'] = $this->my_class->findTypeByClass($mc->id);
         $d['subjects'] = $this->my_class->findSubjectByClass($mc->id);
-
+        // return response()->json(json_decode($d['exam_records'][0]->trait_habit)->_token);
+        $d['trait_habit'] = json_decode($d['exam_records'][0]->trait_habit);
+        $d['data'] = json_decode($d['marks'][0]->data);
         $d['ct'] = $ct = $d['class_type']->code;
         $d['year'] = $year;
         $d['student_id'] = $student_id;
@@ -202,6 +204,9 @@ class MarkController extends Controller
         $class_type = $this->my_class->findTypeByClass($class_id);
 
         $mks = $req->all();
+        $all_data = $req->all();
+
+        // return response()->json($all_data);
 
         /** Test, Exam, Grade **/
         foreach($marks->sortBy('user.name') as $mk){
@@ -215,9 +220,15 @@ class MarkController extends Controller
                 $d['exm'] = $exm = $mks['exm_'.$mk->id];
             }
 
-            if($class_type->code == 'N'){
-                $d['t1'] = $tca = $d['tca'] = $mks['t1_'.$mk->id];
+            if($class_type->code == 'LTR_CLASS'){
+                // return response()->json($class_type->code);
+                $d['t1'] = $t1 = $mks['t1_'.$mk->id];
+                $d['t2'] = $t2 = $mks['t2_'.$mk->id];
+                $d['t3'] = $t3 = $mks['t3_'.$mk->id];
+                $d['t4'] = $t4 = $mks['t4_'.$mk->id];
+                $d['tca'] = $tca = $t1 + $t2 + $t3 + $t4;
                 $d['exm'] = $exm = $mks['exm_'.$mk->id];
+                $d['data'] = json_encode($all_data);
             }
 
             /** SubTotal Grade, Remark, Cum, CumAvg**/
@@ -342,8 +353,11 @@ class MarkController extends Controller
 
     public function comment_update(Request $req, $exr_id)
     {
+        // return response()->json($req->all());
         $d = Qs::userIsTeamSA() ? $req->only(['t_comment', 'p_comment']) : $req->only(['t_comment']);
-
+        $d['trait_habit'] = json_encode($req->all());
+        // return response()->json($d);
+        
         $this->exam->updateRecord(['id' => $exr_id], $d);
         return Qs::jsonUpdateOk();
     }

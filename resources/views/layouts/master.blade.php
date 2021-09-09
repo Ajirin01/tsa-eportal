@@ -11,6 +11,16 @@
     <title> @yield('page_title') | {{ config('app.name') }} </title>
 
     @include('partials.inc_top')
+    <style>
+		td{
+			border: 1px solid black;
+			border-collapse: collapse !important;
+		}
+        .trait{
+            width: 30px;
+            text-align: center
+        }
+	</style>
 </head>
 
 <body class="{{ in_array(Route::currentRouteName(), ['payments.invoice', 'marks.tabulation', 'marks.show', 'ttr.manage', 'ttr.show']) ? 'sidebar-xs' : '' }}">

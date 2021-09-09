@@ -22,6 +22,7 @@ class CreateExamRecordsTable extends Migration
             $table->integer('total')->nullable();
             $table->string('ave')->nullable();
             $table->string('class_ave')->nullable();
+            $table->longText('trait_habit')->nullable();
             $table->integer('pos')->nullable();
             $table->string('af')->nullable();
             $table->string('ps')->nullable();
