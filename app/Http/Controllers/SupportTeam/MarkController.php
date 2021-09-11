@@ -118,6 +118,7 @@ class MarkController extends Controller
         }
 
         $wh = ['student_id' => $student_id, 'exam_id' => $exam_id, 'year' => $year ];
+        // return response()->json($wh);
         $d['marks'] = $mks = $this->exam->getMark($wh);
         $d['exr'] = $exr = $this->exam->getRecord($wh)->first();
         $d['my_class'] = $mc = $this->my_class->find($exr->my_class_id);
@@ -126,7 +127,8 @@ class MarkController extends Controller
         $d['sr'] = $sr =$this->student->getRecord(['user_id' => $student_id])->first();
         $d['class_type'] = $this->my_class->findTypeByClass($mc->id);
         $d['subjects'] = $this->my_class->findSubjectByClass($mc->id);
-
+        // return response()->json($d['exr']->p_comment);
+        $d['trait_habit'] = json_decode($d['exr']->trait_habit);
         $d['ct'] = $ct = $d['class_type']->code;
         $d['year'] = $year;
         $d['student_id'] = $student_id;
@@ -144,7 +146,15 @@ class MarkController extends Controller
 
     public function selector(MarkSelector $req)
     {
-        $data = $req->only(['exam_id', 'my_class_id', 'section_id', 'subject_id']);
+        // echo "hello";
+        // exit;
+        // return response()->json($req->all());
+        if($req->subject_id == null){
+            $data = $req->only(['exam_id', 'my_class_id', 'section_id']);
+        }else{
+            $data = $req->only(['exam_id', 'my_class_id', 'section_id', 'subject_id']);
+        }
+        // $data = $req->only(['exam_id', 'my_class_id', 'section_id', 'subject_id']);
         $d2 = $req->only(['exam_id', 'my_class_id', 'section_id']);
         $d = $req->only(['my_class_id', 'section_id']);
         $d['session'] = $data['year'] = $d2['year'] = $this->year;
@@ -163,16 +173,22 @@ class MarkController extends Controller
 
         foreach ($students as $s){
             $data['student_id'] = $d2['student_id'] = $s->user_id;
+            if($req->subject_id == null){
+                $data['subject_id'] = 123456789;
+            }
             $this->exam->createMark($data);
             $this->exam->createRecord($d2);
         }
-
+        if($req->subject_id == null){
+            return redirect()->route('marks.manage', [$req->exam_id, $req->my_class_id, $req->section_id, 123456789]);
+        }
         return redirect()->route('marks.manage', [$req->exam_id, $req->my_class_id, $req->section_id, $req->subject_id]);
     }
 
     public function manage($exam_id, $class_id, $section_id, $subject_id)
     {
         $d = ['exam_id' => $exam_id, 'my_class_id' => $class_id, 'section_id' => $section_id, 'subject_id' => $subject_id, 'year' => $this->year];
+        // return response()->json($section_id);
 
         $d['marks'] = $this->exam->getMark($d);
         if($d['marks']->count() < 1){
@@ -195,6 +211,7 @@ class MarkController extends Controller
 
     public function update(Request $req, $exam_id, $class_id, $section_id, $subject_id)
     {
+        // return response()->json($req->all());
         $p = ['exam_id' => $exam_id, 'my_class_id' => $class_id, 'section_id' => $section_id, 'subject_id' => $subject_id, 'year' => $this->year];
 
         $d = $all_st_ids = []; $tca = $exm = $grade = NULL;
@@ -212,15 +229,11 @@ class MarkController extends Controller
         foreach($marks->sortBy('user.name') as $mk){
             $st_id = $all_st_ids[] = $mk->student_id;
 
-            if(in_array($class_type->code, ['J', 'P', 'S']) ){
-                $d['t1'] = $t1 = $mks['t1_'.$mk->id];
-                $d['t2'] = $t2 = $mks['t2_'.$mk->id];
-                $d['t3'] = $t3 = $mks['t3_'.$mk->id];
-                $d['tca'] = $tca = $t1 + $t2 + $t3;
-                $d['exm'] = $exm = $mks['exm_'.$mk->id];
+            if(in_array($class_type->code, ['sbs1', 'sbs2', 'RB_CLASS']) ){
+                $d['data'] = json_encode($all_data);
             }
 
-            if($class_type->code == 'LTR_CLASS'){
+            if($class_type->code == 'LTR_CLASS' || $class_type->code == 'ML_CLASS'){
                 // return response()->json($class_type->code);
                 $d['t1'] = $t1 = $mks['t1_'.$mk->id];
                 $d['t2'] = $t2 = $mks['t2_'.$mk->id];
@@ -230,6 +243,11 @@ class MarkController extends Controller
                 $d['exm'] = $exm = $mks['exm_'.$mk->id];
                 $d['data'] = json_encode($all_data);
             }
+
+            // if($class_type->code == 'sbs1'){
+            //     // return response()->json($class_type->code);
+            //     $d['data'] = json_encode($all_data);
+            // }
 
             /** SubTotal Grade, Remark, Cum, CumAvg**/
 

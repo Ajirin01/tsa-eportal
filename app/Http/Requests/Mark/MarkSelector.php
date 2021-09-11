@@ -23,7 +23,7 @@ class MarkSelector extends FormRequest
             'exam_id' => 'required|exists:exams,id',
             'my_class_id' => 'required|exists:my_classes,id',
             'section_id' => 'required|exists:sections,id',
-            'subject_id' => 'required|exists:subjects,id',
+            // 'subject_id' => 'required|exists:subjects,id',
         ];
     }
 

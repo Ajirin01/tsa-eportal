@@ -9,8 +9,8 @@
         </div>
     </div>
 
- {{-- @include('pages.support_team.marks.show.'.$mark_type) --}}
- @include('pages.support_team.marks.show.LR')
+ @include('pages.support_team.marks.show.'.$mark_type)
+ {{-- @include('pages.support_team.marks.show.LR') --}}
 
 
     {{--Marks Index --}}

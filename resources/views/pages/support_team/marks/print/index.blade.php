@@ -2,6 +2,16 @@
 <head>
     <title>Student Marksheet - {{ $sr->user->name }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/my_print.css') }}" />
+    <style>
+		td{
+			border: 1px solid black;
+			border-collapse: collapse !important;
+		}
+        .trait{
+            width: 30px;
+            text-align: center
+        }
+	</style>
 </head>
 <body>
 <div class="container">

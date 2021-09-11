@@ -53,10 +53,10 @@
                                                     <td>
                                                         <td>#</td>
                                                         @for ($i = 0; $i < 4; $i++)
-                                                        @php
-                                                            $ff = "bk".$mk->id;
-                                                        @endphp
-                                                            <td style="width: 70px">{{ $data->$ff[$i] }}</td>
+                                                            @php
+                                                                $ff = "bk".$mk->id;
+                                                            @endphp
+                                                            <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
                                                         @endfor
                                                         
                                                         
@@ -81,10 +81,12 @@
                                                     <td>
                                                         <td>%</td>
                                                         @for ($i = 0; $i < 4; $i++)
-                                                        @php
-                                                            $ff = "per".$mk->id;
-                                                        @endphp
-                                                            <td style="width: 70px">{{ $data->$ff[$i] }}</td>
+                                                            @php
+                                                                $ff = "per".$mk->id;
+                                                            @endphp
+                                                            {{-- <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td> --}}
+                                                            <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
+
                                                         @endfor
                                                         
                                                         <td> 
@@ -104,7 +106,6 @@
                                             </tr>
                                         @endforeach
 									</tr>
-									
 								</tbody>
 								<tfoot>
 									<tr>
@@ -429,11 +430,11 @@
                                                     {{-- @for($i = 0; $i < 4; $i++)
                                                         <td></td>
                                                     @endfor --}}
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -467,11 +468,11 @@
                                             @for ($i = 0; $i < count($trait_json) ; $i++)
                                                 <tr>
                                                     <td>{{ $trait_json[$i] }}</td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
