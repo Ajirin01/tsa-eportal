@@ -54,5 +54,17 @@
 
 @include('partials.inc_bottom')
 @yield('scripts')
+
+<script>
+    function toggleMarks(id){
+        console.log("#toggle"+id)
+        var id = "toggle"+id
+
+        console.log(document.getElementById(id))
+        document.getElementById(id).style.display = 'none'
+
+        // $("#toggle"+id).toggle();
+    }
+</script>
 </body>
 </html>
