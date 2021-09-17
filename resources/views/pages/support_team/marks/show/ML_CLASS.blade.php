@@ -1,3 +1,8 @@
+@php
+    $per_grand_array = [];
+    $pace_array = [];
+    $total_grand_array = [];
+@endphp
 @foreach($exams as $ex)
     @foreach($exam_records->where('exam_id', $ex->id) as $exr)
 
@@ -45,101 +50,125 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+                                    <tr>
                                         @foreach($subjects as $sub)
                                             <tr>
-                                                @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id) as $mk)
+                                                @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->where('sec_a', 'on') as $mk)
                                                     <td>{{ $sub->name }}</td>
                                                     <td>
                                                         <td>#</td>
-                                                        @for ($i = 0; $i < 4; $i++)
+                                                        @for ($i = 0; $i < 7; $i++)
                                                             @php
                                                                 $ff = "bk".$mk->id;
                                                             @endphp
-                                                            <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
+                                                            <td align="center" style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
                                                         @endfor
-                                                        
-                                                        
-                                                        <td> 
-                                                            <span><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p></span>
+                                                        <td align="center">
+                                                            {{-- {{ json_encode(json_decode($mk->data)->$ff[2] == null) }} --}}
+                                                            @php
+                                                                $bk_count = 0;
+                                                                for($k=0; $k<7; $k++){
+                                                                    if(json_decode($mk->data)->$ff[$k] == null){
+                                                                        ;
+                                                                    }else{
+                                                                        $bk_count++;
+                                                                    }
+                                                                }
+                                                                
+                                                            @endphp
+                                                            @php
+                                                                array_push($pace_array,$bk_count);
+                                                                $pace_total = ($pace_array) ; 
+                                                            @endphp
+                                                            {{ $bk_count }}
                                                         </td>
-                                                        <td> 
-                                                            <span><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p></span>
-                                                        </td>
-                                                        <td> 
-                                                            <span><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p></span>
-                                                        </td>
-            
-                                                        <td>{{ count(json_decode($mk->data)->$ff) }}</td>
                                                         <td> </td>
                                                     </td>
                                                 @endforeach
                                             </tr>
                                             <tr>
-                                                @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id) as $mk)
+                                                @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->where('sec_a', 'on') as $mk)
                                                     <td></td>
                                                     <td>
                                                         <td>%</td>
-                                                        @for ($i = 0; $i < 4; $i++)
+                                                        @for ($i = 0; $i < 7; $i++)
                                                             @php
                                                                 $ff = "per".$mk->id;
+                                                                // $per_array = json_decode($mk->data)->$ff[$i];
+                                                                // $per_grand_total = 0;
                                                                 $total_per = 0;
-                                                                $total_per += json_decode($mk->data)->$ff[$i];
-                                                            @endphp
-                                                            {{-- <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td> --}}
-                                                            <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
+                                                                for ($p=0; $p < 7; $p++) { 
+                                                                    // $per_grand_total += $total_per;
+                                                                    if(json_decode($mk->data)->$ff[$p] == null){
+                                                                        ;
+                                                                    }else{
+                                                                        $total_per += json_decode($mk->data)->$ff[$p];
 
+                                                                    }
+                                                                }
+                                                            @endphp
+                                                            
+                                                            {{-- <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td> --}}
+                                                            <td align="center" style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
                                                         @endfor
-                                                        
-                                                        <td> 
-                                                            <span><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p></span>
-                                                        </td>
-                                                        <td> 
-                                                            <span><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p></span>
-                                                        </td>
-                                                        <td> 
-                                                            <span><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p><o:p>&nbsp;</o:p></span>
-                                                        </td>
-            
+                                                        @php
+                                                            array_push($per_grand_array,$total_per);
+                                                            $per_grand_total = ($per_grand_array) ; 
+                                                        @endphp
                                                         <td></td>
-                                                        <td> {{ $total_per?:"-" }} </td>
+                                                        <td align="center"> {{ $total_per?:"-" }} </td>
                                                     </td>
-                                                    @php
-                                                        $per_grand_total = 0;
-                                                        $per_grand_total += $total_per;
-                                                    @endphp
                                                 @endforeach
                                             </tr>
                                         @endforeach
-									</tr>
-									
-								</tbody>
-								<tfoot>
-									<tr>
-										<td align="left" colspan="10">GRAND TOTAL OF PERCENTAGES EARNED:</td>
-										<td align="left" colspan="2">{{ $per_grand_total?:"-" }}</td>
-									</tr>
-									<tr>
-										<td align="left" colspan="10">OUT OF:</td>
-										<td align="left" colspan="2"></td>
-									</tr>
-									<tr>
-										<td align="left" colspan="10">TOTAL PACEs COMPLETED:</td>
-										<td align="left" colspan="2"></td>
-									</tr>
-									<tr>
-										<td align="left" colspan="10">PACE AVERAGE & GRADE : (A )</td>
-										<td align="left" colspan="2"></td>
-									</tr>
-									<tr>
-										<td align="left" colspan="10">READING; WORD PER MINUTE (wpm) :</td>
-										<td align="left" colspan="2"></td>
-									</tr>
-									<tr>
-										<td align="left" colspan="10">% of WPM:</td>
-										<td align="left" colspan="2"></td>
-									</tr>
-								</tfoot>
+                                    </tr>
+                                    
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td style="text-align: left" colspan="10">GRAND TOTAL OF PERCENTAGES EARNED:</td>
+                                        <td style="text-align: right" colspan="2">{{ array_sum($per_grand_total ?? []) ?:"-" }}</td>
+                                        {{-- <td style="text-align: right" colspan="2">{{ json_encode($per_grand_total ?? [])}}</td> --}}
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left" colspan="10">OUT OF:</td>
+                                        <td style="text-align: right" colspan="2">{{ 100  * array_sum($pace_total ?? []) ?:"-" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left" colspan="10">TOTAL PACEs COMPLETED:</td>
+                                        <td style="text-align: right" colspan="2">{{ array_sum($pace_total ?? [])?: '-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left" colspan="10">PACE AVERAGE & GRADE : 
+                                            @php
+                                                $pag = (array_sum($per_grand_total ?? [])  / array_sum($pace_total ?? []));
+                                            @endphp
+                                            
+                                            @if ($pag > 90)
+                                                (A )
+                                            @endif
+                                            @if ($pag > 80 && $pag < 90)
+                                                (B )
+                                            @endif
+                                            @if ($pag > 70 && $pag < 80)
+                                                (C )
+                                            @endif
+                                            @if ($pag > 60 && $pag < 70)
+                                                (D )
+                                            @endif
+                                        </td>
+                                        {{-- <td style="text-align: right" colspan="2">{{ ($per_grand_total * count(json_decode($subjects)))/($pace_total*10) ?:"-" }}</td> --}}
+                                        <td style="text-align: right" colspan="2">{{ array_sum($per_grand_total ?? [])  / array_sum($pace_total ?? []) ?:"-" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left" colspan="10">READING; WORD PER MINUTE (wpm) :</td>
+                                        <td style="text-align: right" colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" colspan="10">% of WPM:</td>
+                                        <td align="left" colspan="2"></td>
+                                    </tr>
+                                </tfoot>
 							</table>
 						</td>
 						<td style="width: 20px">
@@ -190,28 +219,34 @@
                                             <tr>
                                                 <td>{{ $sub->name }}</td>
                                                 @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id) as $mk)
-                                                    <td>{{ $mk->t1 ?: '-' }}</td>
-                                                    <td>{{ $mk->t2 ?: '-' }}</td>
-                                                    <td>{{ $mk->t3 ?: '-' }}</td>
-                                                    <td>{{ $mk->t4 ?: '-' }}</td>
-                                                    <td>{{ $mk->tca ?: '-' }}</td>
-                                                    <td></td>
-                                                    <td>{{ $mk->exm ?: '-' }}</td>
+                                                    <td align="center">{{ $mk->t1 ?: '-' }}</td>
+                                                    <td align="center">{{ $mk->t2 ?: '-' }}</td>
+                                                    <td align="center">{{ $mk->t3 ?: '-' }}</td>
+                                                    <td align="center">{{ $mk->t4 ?: '-' }}</td>
+                                                    <td align="center">{{ $mk->tca ?: '-' }}</td>
+                                                    <td align="center"></td>
+                                                    <td align="center">{{ $mk->exm ?: '-' }}</td>
                                                     @if($ex->term < 3)
                                                         <td>{{ $ex->term == 1 ? $mk->tex1 ?: '-' : $mk->tex2 ?: '-' }}</td>
+                                                        @php
+                                                            array_push($total_grand_array, $ex->term == 1 ? $mk->tex1 ?: 0 : $mk->tex2 ?: 0)
+                                                        @endphp
                                                     @endif 
                                                     @if($ex->term == 3)
-                                                        <td>{{ $mk->tex3 ?: '-' }}</td>
-                                                        <td>{{ Mk::getSubTotalTerm($student_id, $sub->id, 1, $mk->my_class_id, $year) }}</td>
-                                                        <td>{{ Mk::getSubTotalTerm($student_id, $sub->id, 2, $mk->my_class_id, $year) }}</td>
-                                                        <td>{{ $mk->cum ?: '-' }}</td>
-                                                        <td>{{ $mk->cum_ave ?: '-' }}</td>
+                                                        <td align="center">{{ $mk->tex3 ?: '-' }}</td>
+                                                        <td align="center">{{ Mk::getSubTotalTerm($student_id, $sub->id, 1, $mk->my_class_id, $year) }}</td>
+                                                        <td align="center">{{ Mk::getSubTotalTerm($student_id, $sub->id, 2, $mk->my_class_id, $year) }}</td>
+                                                        <td align="center">{{ $mk->cum ?: '-' }}</td>
+                                                        <td align="center">{{ $mk->cum_ave ?: '-' }}</td>
+                                                        @php
+                                                            array_push($total_grand_array, $mk->cum_ave ?: 0)
+                                                        @endphp
                                                     @endif
-                                                    <td>{{ $mk->grade ? $mk->grade->name : '-' }}</td>
-                                                    <td>{{ $mk->sub_pos ?: '-' }}</td>
-                                                    <td>{{$marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->max('tex1')}}</td>
-                                                    <td>{{$marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->min('tex1')}}</td>
-                                                    <td>{{ $mk->grade ? $mk->grade->remark : '-' }}</td>
+                                                    <td align="center">{{ $mk->grade ? $mk->grade->name : '-' }}</td>
+                                                    <td align="center">{{ $mk->sub_pos ?: '-' }}</td>
+                                                    <td align="center">{{$marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->max('tex1')}}</td>
+                                                    <td align="center">{{$marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->min('tex1')}}</td>
+                                                    <td align="center">{{ $mk->grade ? $mk->grade->remark : '-' }}</td>
                                                 @endforeach
                                             </tr>
                                         @endforeach
@@ -222,7 +257,7 @@
 										<td>
 											<tr>
 												<td align="left" colspan="8">GRAND TOTAL:</td>
-												<td align="left" colspan="1"></td>
+												<td align="right" colspan="1">{{ array_sum($total_grand_array) }}</td>
 												<td align="center" colspan="6" rowspan="7">
 													<h4>SUPERVISOR S COMMENT:</h4>
 													<p>{{ $exam_records[0]->p_comment }}</p>
@@ -230,19 +265,38 @@
 											</tr>
 											<tr>
 												<td align="left" colspan="8">OUT OF:</td>
-												<td align="left" colspan="1"></td>
+												<td align="right" colspan="1">{{ 100 * count(json_decode($subjects)) }}</td>
 											</tr>
 											<tr>
 												<td align="left" colspan="8">TOTAL SUBJECTS ENTERED:</td>
-												<td align="left" colspan="1"></td>
+												<td align="right" colspan="1">{{ count(json_decode($subjects)) }}</td>
 											</tr>
 											<tr>
 												<td align="left" colspan="8">AVERAGE SCORE (%):</td>
-												<td align="left" colspan="1"></td>
+												<td align="right" colspan="1">{{ array_sum($total_grand_array) / count(json_decode($subjects)) }}</td>
 											</tr>
 											<tr>
 												<td align="left" colspan="8">OVERALL GRADE:</td>
-												<td align="left" colspan="1"></td>
+                                                @php
+                                                    $grd = array_sum($total_grand_array) / count(json_decode($subjects));
+                                                @endphp
+												<td align="right" colspan="1">
+                                                    @if ($grd < 101 && $grd > 90)
+                                                        A
+                                                    @endif
+                                                    @if ($grd < 90 && $grd > 80)
+                                                        B
+                                                    @endif
+                                                    @if ($grd < 80 && $grd > 70)
+                                                        C
+                                                    @endif
+                                                    @if ($grd < 70 && $grd > 50)
+                                                        D
+                                                    @endif
+                                                    @if ($grd < 50)
+                                                        F
+                                                    @endif
+                                                </td>
 											</tr>
 											<tr>
 												<td align="left" colspan="8"></td>

@@ -41,7 +41,9 @@
                         <td><input title="CA2" min="0" max="10" class="text-center" name="t2_{{ $mk->id }}" value="{{ $mk->t2 }}" type="number"></td>
                         <td><input title="CA3" min="0" max="10" class="text-center" name="t3_{{ $mk->id }}" value="{{ $mk->t3 }}" type="number"></td>
                         <td><input title="CA4" min="0" max="10" class="text-center" name="t4_{{ $mk->id }}" value="{{ $mk->t4 }}" type="number"></td>
-                        <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number"></td>
+                        <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number">
+                            <input type="checkbox" name="sec_b" id="">
+                        </td>
                     @endif
 
                     @if($class_type->code == 'ML_CLASS')
@@ -49,54 +51,58 @@
                         <td><input title="CA2" min="0" max="10" class="text-center" name="t2_{{ $mk->id }}" value="{{ $mk->t2 }}" type="number"></td>
                         <td><input title="CA3" min="0" max="10" class="text-center" name="t3_{{ $mk->id }}" value="{{ $mk->t3 }}" type="number"></td>
                         <td><input title="CA4" min="0" max="10" class="text-center" name="t4_{{ $mk->id }}" value="{{ $mk->t4 }}" type="number"></td>
-                        <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number"></td>
+                        <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number">
+                            <input type="checkbox" name="sec_b" id="">
+                        </td>
                     @endif
                     
                 </tr>
                 @if($class_type->code == 'LTR_CLASS')
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td>#</td>
-                        <td></td>
                         <td><input title="CA1" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk1 }}" type="number"></td>
                         <td><input title="CA2" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk2 }}" type="number"></td>
                         <td><input title="CA3" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk3 }}" type="number"></td>
                         <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number">
+                            <input type="checkbox" name="sec_a" id="">
+                        </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td>%</td>
-
-                        <td></td>
                         <td><input title="CA1" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per1 }}" type="number"></td>
                         <td><input title="CA2" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per2 }}" type="number"></td>
                         <td><input title="CA3" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per3 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
                         <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
                     </tr>
                 @endif
 
                 @if($class_type->code == 'ML_CLASS')
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td>#</td>
-                        <td></td>
                         <td><input title="CA1" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk1 }}" type="number"></td>
                         <td><input title="CA2" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk2 }}" type="number"></td>
                         <td><input title="CA3" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk3 }}" type="number"></td>
                         <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number">
+                            <input type="checkbox" name="sec_a" id="">
+                        </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td>%</td>
-
-                        <td></td>
                         <td><input title="CA1" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per1 }}" type="number"></td>
                         <td><input title="CA2" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per2 }}" type="number"></td>
                         <td><input title="CA3" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per3 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
                         <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
                     </tr>
                 @endif

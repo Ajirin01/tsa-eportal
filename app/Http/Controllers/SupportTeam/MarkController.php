@@ -122,6 +122,7 @@ class MarkController extends Controller
         $d['marks'] = $mks = $this->exam->getMark($wh);
         $d['exr'] = $exr = $this->exam->getRecord($wh)->first();
         $d['my_class'] = $mc = $this->my_class->find($exr->my_class_id);
+        $d['all_class_students'] = $this->student->getRecord(['my_class_id' => $exr->my_class_id])->get();
         $d['section_id'] = $exr->section_id;
         $d['ex'] = $exam = $this->exam->find($exam_id);
         $d['sr'] = $sr =$this->student->getRecord(['user_id' => $student_id])->first();
@@ -241,6 +242,17 @@ class MarkController extends Controller
                 $d['t4'] = $t4 = $mks['t4_'.$mk->id];
                 $d['tca'] = $tca = $t1 + $t2 + $t3 + $t4;
                 $d['exm'] = $exm = $mks['exm_'.$mk->id];
+                if($req->has('sec_a')){
+                    $d['sec_a'] = $req->sec_a;
+                }else{
+                    $d['sec_a'] = 'off';
+                }
+
+                if($req->has('sec_b')){
+                    $d['sec_b'] = $req->sec_b;
+                }else{
+                    $d['sec_b'] = 'off';
+                };
                 $d['data'] = json_encode($all_data);
             }
 
