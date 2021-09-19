@@ -56,14 +56,27 @@
 @yield('scripts')
 
 <script>
-    function toggleMarks(id){
-        console.log("#toggle"+id)
-        var id = "toggle"+id
+    var state = 0;
+    function toggleMarks(id, code){
+        // console.log(code)
+        if(code == 'RB_CLASS' || code == 'sbs1' || code == 'sbs2'){
+            if(state == 1){
+                $("#maintoggle"+id).css('display','none')
+                $("#traittoggle"+id).css('display','none')
+                $("#lowertoggle"+id).css('display','none')
+                state = 0
+                console.log(state)
 
-        console.log(document.getElementById(id))
-        document.getElementById(id).style.display = 'none'
+            }else if(state == 0){
+                $("#maintoggle"+id).css('display','block')
+                $("#traittoggle"+id).css('display','block')
+                $("#lowertoggle"+id).css('display','block')
+                state = 1
+                console.log(state)
 
-        // $("#toggle"+id).toggle();
+            }
+        }
+        
     }
 </script>
 </body>

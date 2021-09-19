@@ -203,6 +203,13 @@
                     </li>
                 @endif
 
+                {{--Manage Current Affairs--}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item">
+                        <a href="{{ route('archives.index') }}" class="nav-link"><i class="icon-book"></i> <span> Manage Archives</span></a>
+                    </li>
+                @endif
+
                 {{--Manage Vacancy Applications--}}
                 @if(Qs::userIsTeamSAT())
                     <li class="nav-item">

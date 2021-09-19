@@ -7,6 +7,7 @@
 		td{
 			border: 1px solid black;
 			border-collapse: collapse !important;
+            font-size: .5rem
 		}
 
         .header-table tr td{
@@ -84,10 +85,26 @@
         </div>
 
         {{--<!-- LOGO ENDS HERE-->--}}
-@include('pages.support_team.marks.print.'.$mark_type)
+        @include('pages.support_team.marks.print.'.$mark_type)
     </div>
 </div>
-
+<br><br>
+@if(Qs::userIsTeamSAT())
+    <div class="col-md-12">
+        <table align="center" style="border: none; width: 100%">
+            <tr>
+                <td style="border: none; color: blue; font-size: .8rem">COLLECTOR’S NAME _________________________________________</td>
+                <td style="border: none; color: blue; font-size: .8rem">SIGNATURE __________________________</td>
+                <td style="border: none; color: blue; font-size: .8rem">DATE _______________</td>
+                <td style="border: none; color: blue; font-size: .8rem" colspan="2">CLOSES ON _______________AND RE-OPENS ON ________________</td>
+            </tr>
+        </table>
+    </div>
+@endif
+<br><br>
+<div class="col-md-12">
+    <h6 class="text-center">Printed on: {{ Carbon\Carbon::now() }}</h6>
+</div>
 <script>
     window.print();
 </script>

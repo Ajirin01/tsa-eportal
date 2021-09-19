@@ -134,6 +134,7 @@ class MarkController extends Controller
         $d['year'] = $year;
         $d['student_id'] = $student_id;
         $d['exam_id'] = $exam_id;
+        $d['data'] = json_decode($d['marks'][0]->data);
 
         $d['skills'] = in_array($ct, ['J', 'S']) ? $this->exam->getSkillByClassType($ct) : NULL;
         $d['s'] = Setting::all()->flatMap(function($s){

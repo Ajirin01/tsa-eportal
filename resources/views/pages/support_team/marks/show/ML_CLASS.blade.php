@@ -2,7 +2,22 @@
     $per_grand_array = [];
     $pace_array = [];
     $total_grand_array = [];
-@endphp
+     define("work_habit", "work_habit.json");
+    define("_trait", "trait.json");
+
+    $work_habit = file_get_contents(work_habit);
+    $trait = file_get_contents(_trait);
+
+    $work_habit_json = json_decode($work_habit);
+    $trait_json = json_decode($trait);
+
+
+    // for ($i=0; $i < count($work_habit_json); $i++) { 
+    //     echo $work_habit_json[$i];
+    // }
+
+    // $article_index = json_decode($json);
+@endphp   
 @foreach($exams as $ex)
     @foreach($exam_records->where('exam_id', $ex->id) as $exr)
 
@@ -313,23 +328,7 @@
 
 				<!-- behaviourer trait table -->
 				<table style="width: 100%">
-                    @php
-                        define("work_habit", "work_habit.json");
-                        define("_trait", "trait.json");
-
-                        $work_habit = file_get_contents(work_habit);
-                        $trait = file_get_contents(_trait);
-
-                        $work_habit_json = json_decode($work_habit);
-                        $trait_json = json_decode($trait);
-
-                        
-                        // for ($i=0; $i < count($work_habit_json); $i++) { 
-                        //     echo $work_habit_json[$i];
-                        // }
-                        
-                        // $article_index = json_decode($json);
-                    @endphp     
+                      
 					<tr>
 						<td>
 							<table style="width: 100%">

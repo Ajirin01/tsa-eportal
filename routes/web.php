@@ -156,6 +156,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('materials', 'LearningMaterialController');
         Route::resource('applications', 'ApplicationController');
         Route::resource('current-affairs', 'CurrentAffairController');
+        Route::resource('archives', 'ArchiveController');
         Route::resource('publication', 'PublicationController');
         Route::get('report-form/{class}/{student_id}', 'ReportController@form')->name('report_form');
         Route::post('report-submit/{class}/{student_id}', 'ReportController@submit_form')->name('submit_report');

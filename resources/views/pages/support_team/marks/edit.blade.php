@@ -31,86 +31,69 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $mk->user->name }} </td>
-                    <td style="cursor: pointer" onclick="toggleMarks('{{$mk->user->student_record->id}}')">{{ $mk->user->student_record->adm_no }}</td>
+                    <td style="cursor: pointer" onclick="toggleMarks('{{$mk->user->student_record->id}}', '{{$class_type->code}}')">{{ $mk->user->student_record->adm_no }}</td>
                     {{-- @if ($class_type->code != 'LTR_CLASS' || $class_type->code != 'ML_CLASS')
                         <td style="text-align: right; border-left: none; cursor: pointer" onclick="hideMarks({{$mk->user->student_record->id}})">v</td>
                     @endif --}}
 
-                    @if($class_type->code == 'LTR_CLASS')
+                    @if($class_type->code == 'LTR_CLASS' || $class_type->code == 'ML_CLASS')
                         <td><input title="CA1" min="0" max="10" class="text-center" name="t1_{{ $mk->id }}" value="{{ $mk->t1 }}" type="number"></td>
                         <td><input title="CA2" min="0" max="10" class="text-center" name="t2_{{ $mk->id }}" value="{{ $mk->t2 }}" type="number"></td>
                         <td><input title="CA3" min="0" max="10" class="text-center" name="t3_{{ $mk->id }}" value="{{ $mk->t3 }}" type="number"></td>
                         <td><input title="CA4" min="0" max="10" class="text-center" name="t4_{{ $mk->id }}" value="{{ $mk->t4 }}" type="number"></td>
                         <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number">
-                            <input type="checkbox" name="sec_b" id="">
-                        </td>
-                    @endif
-
-                    @if($class_type->code == 'ML_CLASS')
-                        <td><input title="CA1" min="0" max="10" class="text-center" name="t1_{{ $mk->id }}" value="{{ $mk->t1 }}" type="number"></td>
-                        <td><input title="CA2" min="0" max="10" class="text-center" name="t2_{{ $mk->id }}" value="{{ $mk->t2 }}" type="number"></td>
-                        <td><input title="CA3" min="0" max="10" class="text-center" name="t3_{{ $mk->id }}" value="{{ $mk->t3 }}" type="number"></td>
-                        <td><input title="CA4" min="0" max="10" class="text-center" name="t4_{{ $mk->id }}" value="{{ $mk->t4 }}" type="number"></td>
-                        <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number">
-                            <input type="checkbox" name="sec_b" id="">
+                            @if ( $mk->sec_b == 'on')
+                                <input checked type="checkbox" name="sec_b" id="">
+                            @else
+                                <input type="checkbox" name="sec_b" id="">
+                            @endif
                         </td>
                     @endif
                     
                 </tr>
-                @if($class_type->code == 'LTR_CLASS')
+                @if($class_type->code == 'ML_CLASS' || $class_type->code == 'LTR_CLASS')
                     <tr>
                         <td>#</td>
-                        <td><input title="CA1" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk1 }}" type="number"></td>
-                        <td><input title="CA2" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk2 }}" type="number"></td>
-                        <td><input title="CA3" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk3 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number">
-                            <input type="checkbox" name="sec_a" id="">
+                        @php
+                            $str1 = 'bk'.$mk->id;
+                            $bk_val = json_decode($mk->data)->$str1;
+                            // echo $per_val[0];
+                        @endphp
+                        <td><input title="CA1" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[0] }}" type="number"></td>
+                        <td><input title="CA2" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[1] }}" type="number"></td>
+                        <td><input title="CA3" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[2] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[3] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[4] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[5] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[6] }}" type="number">
+                            @if ( $mk->sec_a == 'on')
+                                <input checked type="checkbox" name="sec_a" id="">
+                            @else
+                                <input type="checkbox" name="sec_a" id="">
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>%</td>
-                        <td><input title="CA1" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per1 }}" type="number"></td>
-                        <td><input title="CA2" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per2 }}" type="number"></td>
-                        <td><input title="CA3" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per3 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                    </tr>
-                @endif
-
-                @if($class_type->code == 'ML_CLASS')
-                    <tr>
-                        <td>#</td>
-                        <td><input title="CA1" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk1 }}" type="number"></td>
-                        <td><input title="CA2" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk2 }}" type="number"></td>
-                        <td><input title="CA3" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk3 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $mk->bk4 }}" type="number">
-                            <input type="checkbox" name="sec_a" id="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>%</td>
-                        <td><input title="CA1" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per1 }}" type="number"></td>
-                        <td><input title="CA2" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per2 }}" type="number"></td>
-                        <td><input title="CA3" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per3 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $mk->per4 }}" type="number"></td>
+                        @php
+                            $str = 'per'.$mk->id;
+                            $per_val = json_decode($mk->data)->$str;
+                            // echo $per_val[0];
+                        @endphp
+                        <td><input title="CA1" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[0] }}" type="number"></td>
+                        <td><input title="CA2" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[1] }}" type="number"></td>
+                        <td><input title="CA3" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[2] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[3] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[4] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[5] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[6] }}" type="number"></td>
                     </tr>
                 @endif
 
                 @if ($class_type->code == 'sbs1')
-                    <div style="display: none" id="toggle{{$mk->user->student_record->id}}">
+                    <div id="toggle{{$mk->user->student_record->id}}">
                         <!-- main table -->
-                        <table id="toggle{{$mk->user->student_record->id}}" class="">
+                        <table style="display: none" id="maintoggle{{$mk->user->student_record->id}}" class="">
                             @php
                                 define("step_by_step_1", "SBS1.json");
         
@@ -139,32 +122,28 @@
                                         <tbody>
                                             <tr>
                                                 @for ($i = 0; $i < count($step_by_step_1_json->upper); $i++)
+                                                    @php
+                                                        $ff = $step_by_step_1_json->upper[$i];
+                                                        $ff = preg_replace("/ /","_", $ff);
+                                                    @endphp
                                                     <tr>
                                                         <td>{{$step_by_step_1_json->upper[$i]}}</td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[0] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[1] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[2] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[3] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[4] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
                                                     </tr>
                                                 @endfor
-                                                {{-- <tr>
-                                                    <td>LESSON 1-3</td>
-                                                    <td><input style="width: 90px" type="number" min="0" max="5" name="lesson1-3[]" id="les"></td>
-                                                    <td><input style="width: 90px" type="number" min="0" max="5" name="lesson1-3[]" id="les"></td>
-                                                    <td><input style="width: 90px" type="number" min="0" max="5" name="lesson1-3[]" id="les"></td>
-                                                    <td><input style="width: 90px" type="number" min="0" max="5" name="lesson1-3[]" id="les"></td>
-                                                    <td><input style="width: 90px" type="number" min="0" max="5" name="lesson1-3[]" id="les"></td>
-                                                </tr> --}}
                                             </tr>
                                             
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <td align="left" colspan="1">SUPERVISOR s COMMENTS:</td>
                                                 <td align="left" colspan="5"></td>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </td>
                                 <td style="width: 20px">
@@ -192,34 +171,37 @@
                                         </thead>
                                         <tbody>
                                             @for ($i = 1; $i < 20; $i++)
+                                                @php
+                                                    $wb = "ps_wb".$i;
+                                                @endphp
                                                 <tr>
                                                     @if ($i < 10)
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[0] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[1] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[2] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[3] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                     @endif
         
                                                     @if ($i >= 10)
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[0] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[1] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[2] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[3] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                     @endif
                                                     
                                                 </tr>
                                             @endfor
                                             
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <td>TOTAL:</td>
                                                 <td></td>
@@ -238,14 +220,14 @@
                                                 <td colspan="2">AVERAGE:</td>
                                                 <td></td>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </td>
                             </tr>
                         </table>
         
                         <!-- behaviourer trait table -->
-                        <table  style="width: 100%">
+                        <table style="display: none" id="traittoggle{{$mk->user->student_record->id}}"  style="width: 100%">
                             @php
                                 define("work_habit", "work_habit.json");
                                 define("_trait", "trait.json");
@@ -276,17 +258,21 @@
         
                                         <tbody>
                                             @for ($i = 0; $i < count($work_habit_json) ; $i++)
+                                                @php
+                                                    $str = preg_replace("/ /", "_",$work_habit_json[$i].$mk->user->student_record->id.$exam_id);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $work_habit_json[$i] }}</td>
                                                     
                                                     {{-- @for($i = 0; $i < 4; $i++)
                                                         <td></td>
                                                     @endfor --}}
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    {{-- <td>{{ $mk->user->student_record->id }}</td> --}}
+                                                    <td><input value="{{ json_decode($mk->data)->$str[0] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[2] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[3] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[4] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -318,13 +304,16 @@
         
                                         <tbody>
                                             @for ($i = 0; $i < count($trait_json) ; $i++)
+                                                @php
+                                                    $str = preg_replace("/ /", "_",$trait_json[$i].$mk->user->student_record->id.$exam_id);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $trait_json[$i] }}</td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -340,7 +329,7 @@
                             </tr>
                             {{-- lower step-by-step --}}
                             <tr>
-                                <table style="width: 100%">
+                                <table style="display: none" id="lowertoggle{{$mk->user->student_record->id}}" style="width: 100%">
                                     <thead>
                                         <tr style="margin-top: 50px;">
                                             <th style="text-align: center; margin: 0 auto; margin-top: 50px;">
@@ -350,10 +339,14 @@
                                     </thead>
                                     <tbody align="left">
                                         @for ($i = 0; $i < count($step_by_step_1_json->lower); $i++)
+                                            @php
+                                                $ff = $step_by_step_1_json->lower[$i];
+                                                $ff = preg_replace("/ /","_", $ff);
+                                            @endphp
                                             <tr>
                                                 <td colspan="2">{{$step_by_step_1_json->lower[$i]}}</td>
-                                                <td colspan="2"><input style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
-                                                <td colspan="4"><input style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
+                                                <td colspan="2"><input value="{{ json_decode($mk->data)->$ff[0] }}" style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
+                                                <td colspan="4"><input value="{{ json_decode($mk->data)->$ff[1] }}" style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
                                             </tr>
                                         @endfor
                                         
@@ -364,16 +357,17 @@
                     </div>
                 @endif
 
+                
                 @if ($class_type->code == 'sbs2')
-                    <div id="toggle{{$mk->user->student_record->id}}" class="card-body collapse">
+                    <div id="toggle{{$mk->user->student_record->id}}">
                         <!-- main table -->
-                        <table class="">
+                        <table style="display: none" id="maintoggle{{$mk->user->student_record->id}}" class="">
                             @php
-                                define("step_by_step_2", "SBS2.json");
+                                define("step_by_step_1", "SBS2.json");
         
-                                $step_by_step_2 = file_get_contents(step_by_step_2);
+                                $step_by_step_1 = file_get_contents(step_by_step_1);
         
-                                $step_by_step_1_json = json_decode($step_by_step_2);
+                                $step_by_step_1_json = json_decode($step_by_step_1);
                             @endphp
                             <tr>
                                 <td> 
@@ -396,24 +390,28 @@
                                         <tbody>
                                             <tr>
                                                 @for ($i = 0; $i < count($step_by_step_1_json->upper); $i++)
+                                                    @php
+                                                        $ff = $step_by_step_1_json->upper[$i];
+                                                        $ff = preg_replace("/ /","_", $ff);
+                                                    @endphp
                                                     <tr>
                                                         <td>{{$step_by_step_1_json->upper[$i]}}</td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[0] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[1] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[2] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[3] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$ff[4] }}" style="width: 90px" type="number" min="0" max="5" name="{{$step_by_step_1_json->upper[$i]}}[]" id=""></td>
                                                     </tr>
                                                 @endfor
                                             </tr>
                                             
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <td align="left" colspan="1">SUPERVISOR s COMMENTS:</td>
                                                 <td align="left" colspan="5"></td>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </td>
                                 <td style="width: 20px">
@@ -441,34 +439,37 @@
                                         </thead>
                                         <tbody>
                                             @for ($i = 1; $i < 20; $i++)
+                                                @php
+                                                    $wb = "ps_wb".$i;
+                                                @endphp
                                                 <tr>
                                                     @if ($i < 10)
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[0] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[1] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[2] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[3] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                     @endif
         
                                                     @if ($i >= 10)
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[0] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[1] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[2] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input value="{{ json_decode($mk->data)->$wb[3] }}" type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                     @endif
                                                     
                                                 </tr>
                                             @endfor
                                             
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <td>TOTAL:</td>
                                                 <td></td>
@@ -487,14 +488,14 @@
                                                 <td colspan="2">AVERAGE:</td>
                                                 <td></td>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </td>
                             </tr>
                         </table>
         
                         <!-- behaviourer trait table -->
-                        <table style="width: 100%">
+                        <table style="display: none" id="traittoggle{{$mk->user->student_record->id}}" style="width: 100%">
                             @php
                                 define("work_habit", "work_habit.json");
                                 define("_trait", "trait.json");
@@ -525,17 +526,21 @@
         
                                         <tbody>
                                             @for ($i = 0; $i < count($work_habit_json) ; $i++)
+                                                @php
+                                                    $str = preg_replace("/ /", "_",$work_habit_json[$i].$mk->user->student_record->id.$exam_id);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $work_habit_json[$i] }}</td>
                                                     
                                                     {{-- @for($i = 0; $i < 4; $i++)
                                                         <td></td>
                                                     @endfor --}}
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    {{-- <td>{{ $mk->user->student_record->id }}</td> --}}
+                                                    <td><input value="{{ json_decode($mk->data)->$str[0] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[2] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[3] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[4] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -567,13 +572,16 @@
         
                                         <tbody>
                                             @for ($i = 0; $i < count($trait_json) ; $i++)
+                                                @php
+                                                    $str = preg_replace("/ /", "_",$trait_json[$i].$mk->user->student_record->id.$exam_id);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $trait_json[$i] }}</td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -589,7 +597,7 @@
                             </tr>
                             {{-- lower step-by-step --}}
                             <tr>
-                                <table style="width: 100%">
+                                <table style="display: none" id="lowertoggle{{$mk->user->student_record->id}}" style="width: 100%">
                                     <thead>
                                         <tr style="margin-top: 50px;">
                                             <th style="text-align: center; margin: 0 auto; margin-top: 50px;">
@@ -599,10 +607,14 @@
                                     </thead>
                                     <tbody align="left">
                                         @for ($i = 0; $i < count($step_by_step_1_json->lower); $i++)
+                                            @php
+                                                $ff = $step_by_step_1_json->lower[$i];
+                                                $ff = preg_replace("/ /","_", $ff);
+                                            @endphp
                                             <tr>
                                                 <td colspan="2">{{$step_by_step_1_json->lower[$i]}}</td>
-                                                <td colspan="2"><input style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
-                                                <td colspan="4"><input style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
+                                                <td colspan="2"><input value="{{ json_decode($mk->data)->$ff[0] }}" style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
+                                                <td colspan="4"><input value="{{ json_decode($mk->data)->$ff[1] }}" style="width: 100%" type="text" name="{{ $step_by_step_1_json->lower[$i] }}[]" id=""></td>
                                             </tr>
                                         @endfor
                                         
@@ -616,7 +628,7 @@
                 @if ($class_type->code == 'RB_CLASS')
                     <div id="toggle{{$mk->user->student_record->id}}" class="card-body collapse">
                         <!-- main table -->
-                        <table class="">
+                        <table style="display: none" id="maintoggle{{$mk->user->student_record->id}}"  class="">
                             <tr>
                                 <td> 
                                     <!-- section A table -->
@@ -639,30 +651,47 @@
                                             <tr>
                                                 @for ($j = 0; $j < 20; $j++)
                                                     <tr>
+                                                        @php
+                                                            $i = 2;
+                                                            
+                                                            $ar0 = "ar".$j."c2";
+                                                            $ar1 = "ar".$j."c3";
+                                                            $ar2 = "ar".$j."c4";
+                                                            $ar3 = "ar".$j."c5";
+                                                            $ar4 = "ar".$j."c6";
+
+                                                            $ar0 = json_decode($mk->data)->$ar0;
+                                                            $ar1 = json_decode($mk->data)->$ar1;
+                                                            $ar2 = json_decode($mk->data)->$ar2;
+                                                            $ar3 = json_decode($mk->data)->$ar3;
+                                                            $ar4 = json_decode($mk->data)->$ar4;
+                                                            
+                                                            // $i++;
+                                                        @endphp
                                                         <td>
                                                             <select name="lesson[]">
-                                                                <option value="">Select Lesson</option>
+                                                                <option value="{{ json_decode($mk->data)->lesson[$j] }}">{{ strtoUpper(json_decode($mk->data)->lesson[$j]) }}</option>
                                                                 @for ($i = 0; $i < 180-2; $i++)
                                                                     <option value="lesson {{$i+1}}-{{$i+3}}">LESSON {{$i+1}}-{{$i+3}}</option>
                                                                 @endfor
                                                             </select>
                                                         </td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c2" id="les"></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c3" id="les"></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c4" id="les"></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c5" id="les"></td>
-                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c6" id="les"></td>
+                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c2" value="{{ $ar0 }}" id="les"></td>
+                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c3" value="{{ $ar1 }}" id="les"></td>
+                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c4" value="{{ $ar2 }}" id="les"></td>
+                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c5" value="{{ $ar3 }}" id="les"></td>
+                                                        <td><input style="width: 90px" type="number" min="0" max="5" name="ar{{$j}}c6" value="{{ $ar4 }}" id="les"></td>
                                                     </tr>
                                                 @endfor
                                             </tr>
                                             
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <td align="left" colspan="1">SUPERVISOR s COMMENTS:</td>
-                                                <td align="left" colspan="5"></td>
+                                                <td align="left" colspan="5">{{ $exr[0]->p_comment }}</td>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </td>
                                 <td style="width: 20px">
@@ -690,59 +719,42 @@
                                         </thead>
                                         <tbody>
                                             @for ($i = 1; $i < 13; $i++)
+                                                @php
+                                                    $wb = "ps_wb".$i;
+                                                @endphp
                                                 <tr>
                                                     @if ($i < 10)
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[0]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[1]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[2]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB0{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[3]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                     @endif
         
                                                     @if ($i >= 10)
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[0]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[1]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[2]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                         <td>PS-WB{{$i}}</td>
-                                                        <td><input type="number" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
+                                                        <td><input type="number" value="{{json_decode($mk->data)->$wb[3]}}" name="ps_wb{{$i}}[]" min="0" max="100" id=""></td>
                                                     @endif
                                                     
                                                 </tr>
                                             @endfor
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td>TOTAL:</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>GRAND TOTAL:</td>
-                                                <td></td>
-                                                <td colspan="2">TOTAL WB COMPLETED:</td>
-                                                <td></td>
-                                                <td colspan="2">AVERAGE:</td>
-                                                <td></td>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </td>
                             </tr>
                         </table>
 
                         <!-- behaviourer trait table -->
-                        <table style="width: 100%">
+                        <table style="display: none" id="traittoggle{{$mk->user->student_record->id}}" style="width: 100%">
                             @php
                                 define("work_habit", "work_habit.json");
                                 define("_trait", "trait.json");
@@ -773,17 +785,21 @@
         
                                         <tbody>
                                             @for ($i = 0; $i < count($work_habit_json) ; $i++)
+                                                @php
+                                                    $str = preg_replace("/ /", "_",$work_habit_json[$i].$mk->user->student_record->id.$exam_id);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $work_habit_json[$i] }}</td>
                                                     
                                                     {{-- @for($i = 0; $i < 4; $i++)
                                                         <td></td>
                                                     @endfor --}}
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    {{-- <td>{{ $mk->user->student_record->id }}</td> --}}
+                                                    <td><input value="{{ json_decode($mk->data)->$str[0] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[2] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[3] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[4] }}" style="width: 30px" min="0" max="5" type="number" name="{{ $work_habit_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -815,13 +831,16 @@
         
                                         <tbody>
                                             @for ($i = 0; $i < count($trait_json) ; $i++)
+                                                @php
+                                                    $str = preg_replace("/ /", "_",$trait_json[$i].$mk->user->student_record->id.$exam_id);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $trait_json[$i] }}</td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
+                                                    <td><input value="{{ json_decode($mk->data)->$str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$mk->user->student_record->id.$exam_id }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
