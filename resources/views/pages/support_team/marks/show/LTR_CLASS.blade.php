@@ -156,7 +156,11 @@
                                     <tr>
                                         <td style="text-align: left" colspan="10">PACE AVERAGE & GRADE : 
                                             @php
-                                                $pag = (array_sum($per_grand_total ?? [])  / array_sum($pace_total ?? []));
+                                                try {
+                                                    $pag = (array_sum($per_grand_total ?? [])  / array_sum($pace_total ?? []));
+                                                } catch (\Throwable $th) {
+                                                    $pag = null;
+                                                }
                                             @endphp
                                             
                                             @if ($pag > 90)
@@ -173,7 +177,7 @@
                                             @endif
                                         </td>
                                         {{-- <td style="text-align: right" colspan="2">{{ ($per_grand_total * count(json_decode($subjects)))/($pace_total*10) ?:"-" }}</td> --}}
-                                        <td style="text-align: right" colspan="2">{{ array_sum($per_grand_total ?? [])  / array_sum($pace_total ?? []) ?:"-" }}</td>
+                                        <td style="text-align: right" colspan="2">{{ $pag ?:"-" }}</td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: left" colspan="10">READING; WORD PER MINUTE (wpm) :</td>
@@ -286,15 +290,21 @@
 												<td align="left" colspan="8">TOTAL SUBJECTS ENTERED:</td>
 												<td align="right" colspan="1">{{ count(json_decode($subjects)) }}</td>
 											</tr>
+                                            @php
+                                                
+                                                try {
+                                                    $grd = array_sum($total_grand_array) / count(json_decode($subjects));
+                                                } catch (\Throwable $th) {
+                                                    $grd = null;
+                                                }
+                                            @endphp
 											<tr>
 												<td align="left" colspan="8">AVERAGE SCORE (%):</td>
-												<td align="right" colspan="1">{{ array_sum($total_grand_array) / count(json_decode($subjects)) }}</td>
+												<td align="right" colspan="1">{{ $grd }}</td>
 											</tr>
 											<tr>
 												<td align="left" colspan="8">OVERALL GRADE:</td>
-                                                @php
-                                                    $grd = array_sum($total_grand_array) / count(json_decode($subjects));
-                                                @endphp
+                                                
 												<td align="right" colspan="1">
                                                     @if ($grd < 101 && $grd > 90)
                                                         A

@@ -1,3 +1,11 @@
+@php
+    $total_one_array = [];
+    $total_two_array = [];
+    $total_three_array = [];
+    $total_four_array = [];
+    $total_wb_array = [];
+    
+@endphp
 @foreach($exams as $ex)
     @foreach($exam_records->where('exam_id', $ex->id) as $exr)
 
@@ -15,11 +23,11 @@
 				<!-- main table -->
                 <table class="">
                     @php
-                        define("step_by_step_2", "SBS2.json");
+                        define("step_by_step_1", "SBS2.json");
 
-                        $step_by_step_2 = file_get_contents(step_by_step_2);
+                        $step_by_step_1 = file_get_contents(step_by_step_1);
 
-                        $step_by_step_1_json = json_decode($step_by_step_2);
+                        $step_by_step_1_json = json_decode($step_by_step_1);
                     @endphp
                     <tr>
                         <td> 
@@ -91,9 +99,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for ($i = 1; $i < 14; $i++)
+                                    @for ($i = 1; $i < 20; $i++)
                                         @php
                                             $wb = "ps_wb".$i;
+                                            $total_one = 0;
+                                            $total_two = 0;
+                                            $total_three = 0;
+                                            $total_four = 0;
                                         @endphp
                                         <tr>
                                             @if ($i < 10)
@@ -118,6 +130,25 @@
                                                 <td>{{$data->$wb[3]}}</td>
                                             @endif
                                             
+                                            @php
+                                                $total_wb = 0;
+                                                for($k=0; $k<4; $k++){
+                                                    if($data->$wb[$k] == null){
+                                                        ;
+                                                    }else{
+                                                        $total_one = $data->$wb[0];
+                                                        $total_two = $data->$wb[1];
+                                                        $total_three = $data->$wb[2];
+                                                        $total_four = $data->$wb[3];
+                                                        array_push($total_wb_array, 1);
+                                                    }
+                                                }
+                                                array_push($total_one_array,$total_one);
+                                                array_push($total_two_array,$total_two);
+                                                array_push($total_three_array,$total_three);
+                                                array_push($total_four_array,$total_four);
+                                                // $pace_total = ($pace_array) ; 
+                                            @endphp
                                         </tr>
                                     @endfor
                                     
@@ -125,21 +156,31 @@
                                 <tfoot>
                                     <tr>
                                         <td>TOTAL:</td>
+                                        {{-- <td>{{ json_encode($total_one_array)?: '-' }}</td> --}}
+                                        <td style="text-align: center">{{ array_sum($total_one_array)?: '-' }}</td>
                                         <td></td>
+                                        {{-- <td>{{json_encode($total_two_array)?: '-' }}</td> --}}
+                                        <td style="text-align: center">{{ array_sum($total_two_array)?: '-' }}</td>
                                         <td></td>
+                                        <td style="text-align: center">{{ array_sum($total_three_array)?: '-' }}</td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td style="text-align: center">{{ array_sum($total_four_array)?: '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>GRAND TOTAL:</td>
-                                        <td></td>
+                                        <td style="text-align: center"> {{ array_sum($total_one_array) + array_sum($total_two_array) + array_sum($total_three_array) + array_sum($total_four_array) ?: '-' }} </td>
                                         <td colspan="2">TOTAL WB COMPLETED:</td>
-                                        <td></td>
+                                        {{-- <td>{{ $total_wb }}</td> --}}
+                                        <td style="text-align: center">{{ array_sum($total_wb_array) }}</td>
                                         <td colspan="2">AVERAGE:</td>
-                                        <td></td>
+                                        @php
+                                            try{
+                                                $ave = (array_sum($total_one_array) + array_sum($total_two_array) + array_sum($total_three_array) + array_sum($total_four_array))/ array_sum($total_wb_array);
+                                            }catch(\throwable $e){
+                                                $ave = null;
+                                            }
+                                        @endphp
+                                        <td style="text-align: center">{{ $ave ?: '-'}}</td>
                                     </tr>
                                 </tfoot>
                             </table>

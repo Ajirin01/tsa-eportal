@@ -164,7 +164,14 @@
                                 {{-- <td>{{ $total_wb }}</td> --}}
                                 <td style="text-align: center">{{ array_sum($total_wb_array) }}</td>
                                 <td style="text-align: left" colspan="2">AVERAGE:</td>
-                                <td style="text-align: center">{{ (array_sum($total_one_array) + array_sum($total_two_array) + array_sum($total_three_array) + array_sum($total_four_array))/ array_sum($total_wb_array) ?: '-'}}</td>
+                                @php
+                                try{
+                                    $ave = (array_sum($total_one_array) + array_sum($total_two_array) + array_sum($total_three_array) + array_sum($total_four_array))/ array_sum($total_wb_array);
+                                }catch(\throwable $e){
+                                    $ave = null;
+                                }
+                            @endphp
+                            <td style="text-align: center">{{ $ave ?: '-'}}</td>
                             </tr>
                         </tfoot>
                     </table>
