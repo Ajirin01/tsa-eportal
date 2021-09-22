@@ -21,7 +21,7 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Title</th>
-                                {{-- <th>Gellery Type</th> --}}
+                                {{-- <th>Gellery Category</th> --}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -30,7 +30,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $gallery->title }}</td>
-                                    {{-- <td>{{ $gallery->class_type->name }}</td> --}}
+                                    {{-- <td>{{ $gallery->gallery_category->name }}</td> --}}
                                     <td class="text-center">
                                         <div class="list-icons">
                                             <div class="dropdown">
@@ -92,16 +92,16 @@
                                     <textarea class="form-control" name="description" id="" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
 
-                                {{-- <div class="form-group row">
-                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Gellery Type</label>
+                                <div class="form-group row">
+                                    <label for="gallery_category_id" class="col-lg-3 col-form-label font-weight-semibold">Gellery Category</label>
                                     <div class="col-lg-9">
-                                        <select required data-placeholder="Select Gellery Type" class="form-control select" name="class_type_id" id="class_type_id">
-                                            @foreach($class_types as $ct)
-                                                <option {{ old('class_type_id') == $ct->id ? 'selected' : '' }} value="{{ $ct->id }}">{{ $ct->name }}</option>
+                                        <select required data-placeholder="Select Gellery Category" class="form-control select" name="gallery_category_id" id="gallery_category_id">
+                                            @foreach($gallery_categorys as $ct)
+                                                <option {{ old('gallery_category_id') == $ct->id ? 'selected' : '' }} value="{{ $ct->id }}">{{ $ct->category }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="text-right">
                                     <button id="ajax-btn" type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>

@@ -49,15 +49,20 @@
                                                     @for ($i = 0; $i < 7; $i++)
                                                         @php
                                                             $ff = "bk".$mk->id;
+                                                            try{
+                                                                $v_ff = json_decode($mk->data)->$ff;
+                                                            }catch(Exception $e){
+                                                                $v_ff = [null,null,null,null,null,null,null];
+                                                            }
                                                         @endphp
-                                                        <td align="center" style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
+                                                        <td align="center" style="width: 70px">{{ $v_ff[$i] }}</td>
                                                     @endfor
                                                     <td align="center">
                                                         {{-- {{ json_encode(json_decode($mk->data)->$ff[2] == null) }} --}}
                                                         @php
                                                             $bk_count = 0;
                                                             for($k=0; $k<7; $k++){
-                                                                if(json_decode($mk->data)->$ff[$k] == null){
+                                                                if($v_ff[$k] == null){
                                                                     ;
                                                                 }else{
                                                                     $bk_count++;
@@ -85,20 +90,25 @@
                                                             $ff = "per".$mk->id;
                                                             // $per_array = json_decode($mk->data)->$ff[$i];
                                                             // $per_grand_total = 0;
+                                                            try {
+                                                                $v_ff = json_decode($mk->data)->$ff;
+                                                            } catch (\Throwable $th) {
+                                                                $v_ff = [null,null,null,null,null,null,null];
+                                                            }
                                                             $total_per = 0;
                                                             for ($p=0; $p < 7; $p++) { 
                                                                 // $per_grand_total += $total_per;
-                                                                if(json_decode($mk->data)->$ff[$p] == null){
+                                                                if($v_ff[$p] == null){
                                                                     ;
                                                                 }else{
-                                                                    $total_per += json_decode($mk->data)->$ff[$p];
+                                                                    $total_per += $v_ff[$p];
 
                                                                 }
                                                             }
                                                         @endphp
                                                         
                                                         {{-- <td style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td> --}}
-                                                        <td align="center" style="width: 70px">{{ json_decode($mk->data)->$ff[$i] }}</td>
+                                                        <td align="center" style="width: 70px">{{ $v_ff[$i] }}</td>
                                                     @endfor
                                                     @php
                                                         array_push($per_grand_array,$total_per);

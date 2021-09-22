@@ -30,7 +30,7 @@ class GalleryController extends Controller
     {
         $gallerys = Gallery::all();
         $categories = GalleryCategory::all();
-        return view('pages.support_team.gallery.index', ['galleries'=> $gallerys, 'categories'=> $categories]);
+        return view('pages.support_team.gallery.index', ['galleries'=> $gallerys, 'gallery_categorys'=> $categories]);
     }
 
     public function create()
@@ -65,9 +65,10 @@ class GalleryController extends Controller
             $data['title'] = $request->title;
             $data['description'] = $request->description;
             $data['photo'] = json_encode($gallery_photos_array);
+            $data['gallery_category_id'] = $request->gallery_category_id;
 
-            $category->gallery()->create($data);
-            // Gallery::create($data);
+            // $category->gallery()->create($data);
+            Gallery::create($data);
             return Qs::jsonStoreOk();
         }else{
             return back()->with('pop_error', 'Please select at least one photo');
@@ -83,7 +84,7 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::find($id);
         $categories = GalleryCategory::all();
-        return view('pages.support_team.gallery.edit', ['gallery'=> $gallery, 'categories'=> $categories]);
+        return view('pages.support_team.gallery.edit', ['gallery'=> $gallery, 'gallery_categorys'=> $categories]);
     }
 
     public function update(Request $request, $id)

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SupportTeam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CurrentAffair;
+use App\Models\GalleryCategory;
 use Validator;
 
 use App\Helpers\Qs;
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class CurrentAffairController extends Controller
+class GalleryCategoryController extends Controller
 {
     public function __construct(UserRepo $user, LocationRepo $loc, MyClassRepo $my_class)
     {
@@ -28,14 +28,14 @@ class CurrentAffairController extends Controller
 
     public function index()
     {
-        $current_affair = CurrentAffair::all();
-        return view('pages.support_team.current_affairs.index', ['current_affairs'=> $current_affair]);
+        $event_categories = GalleryCategory::all();
+        return view('pages.support_team.events_category.index', ['events_category'=> $event_categories]);
     }
 
     public function create()
     {
-        $current_affair = CurrentAffair::all();
-        return view('pages.support_team.current_affairs.index', ['current_affairs'=> $current_affair]);
+        $event_categories = GalleryCategory::all();
+        return view('pages.support_team.events_category.index', ['events_category'=> $event_categories]);
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class CurrentAffairController extends Controller
             $data= [];
             $data['category'] = $request->title;
             $data['description'] = $request->description;
-            CurrentAffair::create($data);
+            GalleryCategory::create($data);
             return Qs::jsonStoreOk();
         }
     }
@@ -64,8 +64,8 @@ class CurrentAffairController extends Controller
 
     public function edit($id)
     {
-        $current_affair = CurrentAffair::find($id);
-        return view('pages.support_team.current_affairs.edit', ['current_affair'=> $current_affair]);
+        $event_categories = GalleryCategory::find($id);
+        return view('pages.support_team.events_category.edit', ['event_categories'=> $event_categories]);
     }
 
     /**
@@ -78,7 +78,7 @@ class CurrentAffairController extends Controller
     public function update(Request $request, $id)
     {
         // return response()->json($request->all());
-        $event_category_to_update = CurrentAffair::find($id);
+        $event_category_to_update = GalleryCategory::find($id);
         $data = [];
         $data['category'] = $request->title;
         $data['description'] = $request->description;
