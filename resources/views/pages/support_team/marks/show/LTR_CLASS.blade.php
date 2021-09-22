@@ -84,6 +84,7 @@
                                                             <td align="center" style="width: 70px">{{ $v_ff[$i] }}</td>
                                                         @endfor
                                                         <td align="center">
+                                                            
                                                             {{-- {{ json_encode(json_decode($mk->data)->$ff[2] == null) }} --}}
                                                             @php
                                                                 $bk_count = 0;
