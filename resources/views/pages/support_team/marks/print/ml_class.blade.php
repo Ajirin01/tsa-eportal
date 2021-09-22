@@ -71,7 +71,7 @@
                                                         @endphp
                                                         {{ $bk_count }}
                                                     </td>
-                                                    <td> </td>
+                                                    <td></td>
                                                 </td>
                                             @endforeach
                                         </tr>
