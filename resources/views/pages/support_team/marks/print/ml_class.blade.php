@@ -7,7 +7,7 @@
     <tr>
         <td>
             <!-- main table -->
-            <table class="table-collapsed" style="width: 100%">
+            <table class="" style="width: 90vw">
                 <tr>
                     <td> 
                         <!-- section A table -->

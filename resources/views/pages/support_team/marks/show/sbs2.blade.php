@@ -362,6 +362,25 @@
                                 <input name="t_comment" value="{{ $exr->t_comment }}"  type="text" class="form-control" placeholder="Teacher's Comment">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Present</label>
+                            <div class="col-lg-10">
+                                <input name="present" value="{{ $exr->present }}"  type="text" class="form-control" placeholder="Teacher's Comment">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Absent</label>
+                            <div class="col-lg-10">
+                                <input name="absent" value="{{ $exr->absent }}"  type="text" class="form-control" placeholder="Teacher's Comment">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Supervisor's Name</label>
+                            <div class="col-lg-10">
+                                <input name="supervisor_name" value="{{ $exr->supervisor_name }}"  type="text" class="form-control" placeholder="Teacher's Comment">
+                            </div>
+                        </div>
                     @endif
 
                     @if(Qs::userIsTeamSA())

@@ -161,7 +161,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('report-form/{class}/{student_id}', 'ReportController@form')->name('report_form');
         Route::post('report-submit/{class}/{student_id}', 'ReportController@submit_form')->name('submit_report');
         Route::get('report/{class}/{student_id}', 'ReportController@report')->name('report');
+        Route::get('view_photo/{app_id}/{type}/{index}', function($app_id, $type, $index){
+            // return response()->json($index);
 
+            if($type == 'certificate'){
+                $cer = App\Models\Application::find($app_id);
+                // return response()->json($cer);
+                $cer_photo = json_decode($cer->form_data)->certificates[$index];
+                return view('pages.support_team.applications.view_photo',['image'=> $cer_photo]);
+            }if($type == 'passport'){
+
+            }
+        })->name('view_photo');
     });
 
     /************************ AJAX ****************************/

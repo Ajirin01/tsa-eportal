@@ -285,8 +285,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="d-block">Upload Passport Photo:</label>
+                                                @php
+                                                    try{
+                                                        $photo = json_decode($application->form_data)->photo;
+                                                    }catch(Exception $e){
+                                                        $photo = null;
+                                                    }
+                                                @endphp
                                                 {{-- <input value="{{ json_decode($application->form_data)->photo }}" accept="image/*" type="file" name="photo" class="form-input-styled" data-fouc> --}}
-                                                <span class="form-text text-muted">Accepted Images: jpeg, png. Max file size 2Mb</span>
+                                                <span class="form-text text-muted"><img style="width: 150px; height: 150px" src="{{ $photo }}" alt="passport" srcset=""></span>
                                             </div>
                                         </div>
                                     </div>
@@ -315,10 +322,10 @@
                                                 <tbody>
                                                     @for ($i = 0; $i < 3; $i++)
                                                         <tr>
-                                                            <td><input class="form-control" type="text" name="name_of_college[{{$i}}]" id="" value="{{json_decode($application->form_data)->name_of_college[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="from[{{$i}}]" id="" value="{{json_decode($application->form_data)->from[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="to[{{$i}}]" id="" value="{{json_decode($application->form_data)->to[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="headmaster[{{$i}}]" id="" value="{{json_decode($application->form_data)->headmaster[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="name_of_college[]" id="" value="{{json_decode($application->form_data)->name_of_college[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="from[]" id="" value="{{json_decode($application->form_data)->from[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="to[]" id="" value="{{json_decode($application->form_data)->to[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="headmaster[]" id="" value="{{json_decode($application->form_data)->headmaster[$i]}}"></td>
                                                         </tr>
                                                     @endfor
                                                 </tbody>
@@ -342,10 +349,10 @@
                                                 <tbody>
                                                     @for ($i = 0; $i < 3; $i++)
                                                         <tr>
-                                                            <td><input class="form-control" type="text" name="uni_name_of_college[{{$i}}]" id="" value="{{json_decode($application->form_data)->uni_name_of_college[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="uni_from[{{$i}}]" id="" value="{{json_decode($application->form_data)->uni_from[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="uni_to[{{$i}}]" id="" value="{{json_decode($application->form_data)->uni_to[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="uni_vicechancellor[{{$i}}]" id="" value="{{json_decode($application->form_data)->uni_vicechancellor[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="uni_name_of_college[]" id="" value="{{json_decode($application->form_data)->uni_name_of_college[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="uni_from[]" id="" value="{{json_decode($application->form_data)->uni_from[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="uni_to[]" id="" value="{{json_decode($application->form_data)->uni_to[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="uni_vicechancellor[]" id="" value="{{json_decode($application->form_data)->uni_vicechancellor[$i]}}"></td>
                                                         </tr>
                                                     @endfor
                                                 </tbody>
@@ -367,9 +374,9 @@
                                                 <tbody>
                                                     @for ($i = 0; $i < 3; $i++)
                                                         <tr>
-                                                            <td><input class="form-control" type="file" name="certificates[{{$i}}]" id="" value="{{json_decode($application->form_data)->date[$i]}}"></td>
-                                                            <td><input class="form-control" type="date" name="date[{{$i}}]" id="" value="{{json_decode($application->form_data)->date[$i]}}"></td>
-                                                            <td><input class="form-control" type="text" name="grade[{{$i}}]" id="" value="{{json_decode($application->form_data)->grade[$i]}}"></td>
+                                                            <td><a href="{{ route('view_photo',['app_id'=>$application->id, 'type'=> 'certificate', 'index'=> $i]) }}"><img style="width: 50px; height: 50px" src="{{json_decode($application->form_data)->certificates[$i]}}" alt="" srcset=""></a></td>
+                                                            <td><input class="form-control" type="date" name="date[]" id="" value="{{json_decode($application->form_data)->date[$i]}}"></td>
+                                                            <td><input class="form-control" type="text" name="grade[]" id="" value="{{json_decode($application->form_data)->grade[$i]}}"></td>
                                                         </tr>
                                                     @endfor
                                                     
@@ -469,9 +476,14 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><input class="form-control" type="file" name="ref_name[]" id=""></td>
-                                                        <td><input class="form-control" type="date" name="ref_fullname[]" id=""></td>
-                                                        <td><input class="form-control" type="text" name="ref_phone_no[]" id=""></td>
+                                                        <td><input value="{{ json_decode($application->form_data)->ref_name[0] }}" class="form-control" type="text" name="ref_name[]" id=""></td>
+                                                        <td><input value="{{ json_decode($application->form_data)->ref_fullname[0] }}" class="form-control" type="date" name="ref_fullname[]" id=""></td>
+                                                        <td><input value="{{ json_decode($application->form_data)->ref_phone_no[0] }}" class="form-control" type="text" name="ref_phone_no[]" id=""></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input value="{{ json_decode($application->form_data)->ref_name[1] }}" class="form-control" type="text" name="ref_name[]" id=""></td>
+                                                        <td><input value="{{ json_decode($application->form_data)->ref_fullname[1] }}" class="form-control" type="date" name="ref_fullname[]" id=""></td>
+                                                        <td><input value="{{ json_decode($application->form_data)->ref_phone_no[1] }}" class="form-control" type="text" name="ref_phone_no[]" id=""></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -641,18 +653,7 @@
                                                 <label>Do you have strong reservation in the employment of the applicant as a staff of the Trumpet Sound Academy considering the vision, mission and working principles of the school?<span class="text-danger">*</span></label>
                                                 Yes<input type="radio" name="strong_reservation" id="" value="yes"> 
                                                 No<input type="radio" name="strong_reservation" id="" value="no" checked>
-                                                {{-- @if (json_decode($application->form_data)->strong_reservation == "yes")
-                                                    Yes<input type="radio" name="strong_reservation" id="" value="yes" checked> 
-                                                    No<input type="radio" name="strong_reservation" id="" value="no">
-                                                @endif
-                                                @if (json_decode($application->form_data)->strong_reservation == "no")
-                                                    Yes<input type="radio" name="strong_reservation" id="" value="yes"> 
-                                                    No<input type="radio" name="strong_reservation" id="" value="no" checked>
-                                                @endif
-                                                @if (json_decode($application->form_data)->strong_reservation == null)
-                                                    Yes<input type="radio" name="strong_reservation" id="" value="yes"> 
-                                                    No<input type="radio" name="strong_reservation" id="" value="no">
-                                                @endif --}}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -670,7 +671,14 @@
                                                 <tbody>
                                                     <tr>
                                                         <td><input class="form-control" type="text" name="name_of_interviewer[]" id=""></td>
-                                                        <td><input class="form-control" type="file" name="signature_of_interviewer[]" id=""></td>
+                                                        <td><input class="form-control" type="file" id="sig0"></td>
+                                                        <input type="hidden" name="signature_of_interviewer[]" id="el0">
+                                                        <td><input class="form-control" type="text" name="date_of_interviewer[]" id=""></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input class="form-control" type="text" name="name_of_interviewer[]" id=""></td>
+                                                        <td><input class="form-control" type="file" id="sig1"></td>
+                                                        <input type="hidden" name="signature_of_interviewer[]" id="el1">
                                                         <td><input class="form-control" type="text" name="date_of_interviewer[]" id=""></td>
                                                     </tr>
                                                 </tbody>
@@ -700,3 +708,4 @@
     {{--Meterial List Ends--}}
 
 @endsection
+

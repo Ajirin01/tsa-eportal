@@ -24,6 +24,9 @@ class CreateExamRecordsTable extends Migration
             $table->string('class_ave')->nullable();
             $table->longText('trait_habit')->nullable();
             $table->integer('pos')->nullable();
+            $table->string('present')->nullable();
+            $table->string('absent')->nullable();
+            $table->string('supervisor_name')->nullable();
             $table->string('af')->nullable();
             $table->string('ps')->nullable();
             $table->string('p_comment')->nullable();

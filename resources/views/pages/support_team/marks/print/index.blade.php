@@ -47,7 +47,7 @@
                         <td><span style="font-size: .9rem;"><b style="color: blue">NAME:</b>	{{$sr->user->name}}</span></td>
                         <td><span style="font-size: .9rem;"><b style="color: blue">ADM. NO.:</b>  {{ $sr->adm_no }}</span></td>
                         <td><span style="font-size: .9rem;"><b style="color: blue">BIRTHDATE:</b>  {{$sr->user->dob}}</span></td>
-                        <td><span style="font-size: .9rem;"><b style="color: blue">STATE:</b>  {{App\Models\State::find($sr->state_id)}}</span></td>
+                        <td><span style="font-size: .9rem;"><b style="color: blue">STATE:</b>  {{App\Models\State::find($sr->user->state_id)->name}}</span></td>
                         <td><span style="font-size: .9rem;"><b style="color: blue">SCHOOL YEAR:</b> {{$year}}</span></td>
                         <td><span style="font-size: .9rem;"><b style="color: blue">TERM:</b> 
                             {{-- {{$ex->term}} --}}
@@ -65,9 +65,9 @@
                     <tr>
                         <td><span style="font-size: .9rem;"><b style="color: blue">CLASS:</b> {{$my_class->name}}</span></td>
                         <td><span style="font-size: .9rem;"><b style="color: blue">NO. IN CLASS:</b>	{{count(json_decode($all_class_students))}}</span></td>
-                        <td><span style="font-size: .9rem;"><b style="color: blue">DAYS PRESENT:</b>	_</span></td>
-                        <td><span style="font-size: .9rem;"><b style="color: blue">ABSENT:</b>	_</span></td>
-                        <td colspan="2"><span style="font-size: .9rem;"><b style="color: blue"></b>SUPERVISOR:</b>	_</span></td>
+                        <td><span style="font-size: .9rem;"><b style="color: blue">DAYS PRESENT:</b>	{{ $exr->present }}</span></td>
+                        <td><span style="font-size: .9rem;"><b style="color: blue">ABSENT:</b>	{{ $exr->absent }}</span></td>
+                        <td colspan="2"><span style="font-size: .9rem;"><b style="color: blue"></b>SUPERVISOR:</b>	{{ $exr->supervisor_name }}</span></td>
                     </tr>
                 </table>
                 <!-- <div class="col-md-6 text-center" style="color: red; font-size: .7rem; text-align: center"><span>#149, BOSSO LOW-COST, P.O. BOX, 2447, MINNA, NIGER STATE</span></div>

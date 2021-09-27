@@ -217,7 +217,7 @@ class MarkController extends Controller
         $p = ['exam_id' => $exam_id, 'my_class_id' => $class_id, 'section_id' => $section_id, 'subject_id' => $subject_id, 'year' => $this->year];
 
         $d = $all_st_ids = []; $tca = $exm = $grade = NULL;
-
+        
         $exam = $this->exam->find($exam_id);
         $marks = $this->exam->getMark($p);
         $class_type = $this->my_class->findTypeByClass($class_id);
@@ -256,7 +256,7 @@ class MarkController extends Controller
                 };
                 $d['data'] = json_encode($all_data);
             }
-
+            
             // if($class_type->code == 'sbs1'){
             //     // return response()->json($class_type->code);
             //     $d['data'] = json_encode($all_data);
@@ -388,6 +388,9 @@ class MarkController extends Controller
         $d = Qs::userIsTeamSA() ? $req->only(['t_comment', 'p_comment']) : $req->only(['t_comment']);
         $d['trait_habit'] = json_encode($req->all());
         // return response()->json($d);
+        $d['present'] = $req->present;
+        $d['absent'] = $req->absent;
+        $d['supervisor_name'] = $req->supervisor_name;
         
         $this->exam->updateRecord(['id' => $exr_id], $d);
         return Qs::jsonUpdateOk();

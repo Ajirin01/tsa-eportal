@@ -113,17 +113,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-
-                            {{--Student report--}}
-                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.report', 'students.submit_report', 'students.report_form']) ? 'nav-item-expanded' : '' }}">
-                                <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.report', 'students.submit_report', 'students.report']) ? 'active' : '' }}">Student Report</a>
-                                <ul class="nav nav-group-sub">
-                                    @foreach(App\Models\MyClass::orderBy('name')->get() as $c)
-                                        <li class="nav-item"><a href="{{ route('students.student_report_list', $c->id) }}" class="nav-link ">{{ $c->name }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
-
+                            
                             @if(Qs::userIsTeamSA())
 
                             {{--Student Promotion--}}

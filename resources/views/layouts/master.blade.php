@@ -79,5 +79,39 @@
         
     }
 </script>
+<script>
+    $(document).ready(function(){
+        function readURL(input, index){
+        if(input.files && input.files[0]){
+            var reader = new FileReader()
+
+            reader.onload = function(e){
+                var id = 'el'+index
+                // $(id).attr('src', e.target.result)
+                document.getElementById(id).value = e.target.result
+                // console.log(e.target.result)
+
+            }
+            reader.readAsDataURL(input.files[0])
+        }
+   }
+   
+   var state = 0
+
+    if(state == 0){
+        $('#sig0').change(function(){
+            readURL(this, 0)
+        });
+        state = 1
+    }if(state == 1){
+        $('#sig1').change(function(){
+            readURL(this, 1)
+        });
+        state = 0
+    }
+
+    })
+    
+</script>
 </body>
 </html>
