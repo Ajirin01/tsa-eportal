@@ -435,17 +435,6 @@
                                                 <td class="trait">{{ ($trait_habit)->$str[3] }}</td>
                                                 <td class="trait">{{ ($trait_habit)->$str[4] }}</td>
                                             @endif
-                                            {{-- <td class="trait">{{ ($trait_habit)->$str[0] }}</td>
-                                            <td class="trait">{{ ($trait_habit)->$str[1] }}</td>
-                                            <td class="trait">{{ ($trait_habit)->$str[2] }}</td>
-                                            <td class="trait">{{ ($trait_habit)->$str[3] }}</td>
-                                            <td class="trait">{{ ($trait_habit)->$str[4] }}</td> --}}
-                                            {{-- <td>FOLLOWS DIRECTIONS</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td> --}}
                                         </tr>
                                     @endfor
 								</tbody>
@@ -483,6 +472,25 @@
                             <label class="col-lg-2 col-form-label font-weight-semibold">Teacher's Comment</label>
                             <div class="col-lg-10">
                                 <input name="t_comment" value="{{ $exr->t_comment }}"  type="text" class="form-control" placeholder="Teacher's Comment">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Present</label>
+                            <div class="col-lg-10">
+                                <input name="present" value="{{ $exr->present }}"  type="text" class="form-control" placeholder="Teacher's Comment">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Absent</label>
+                            <div class="col-lg-10">
+                                <input name="absent" value="{{ $exr->absent }}"  type="text" class="form-control" placeholder="Teacher's Comment">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Supervisor's Name</label>
+                            <div class="col-lg-10">
+                                <input name="supervisor_name" value="{{ $exr->supervisor_name }}"  type="text" class="form-control" placeholder="Teacher's Comment">
                             </div>
                         </div>
                     @endif
@@ -523,14 +531,24 @@
                                                 <tr>
                                                     <td>{{ $work_habit_json[$i] }}</td>
                                                     
-                                                    {{-- @for($i = 0; $i < 4; $i++)
-                                                        <td></td>
-                                                    @endfor --}}
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    @php
+                                                        try{
+                                                            $str1 = json_decode($exr->trait_habit);
+                                                            // $str2 = $work_habit_json[$i].$student_id.$ex->id.$year;
+                                                            $str2 = preg_replace("/ /", "_",$work_habit_json[$i].$student_id.$ex->id.$year);
+
+                                                            $str = $str1->$str2;
+                                                            // $str = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
+
+                                                        }catch(Exception $e){
+                                                            $str = [null, null, null, null, null];
+                                                        }
+                                                    @endphp
+                                                    <td><input value="{{ $str[0] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[1] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[2] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[3] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[4] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -564,11 +582,24 @@
                                             @for ($i = 0; $i < count($trait_json) ; $i++)
                                                 <tr>
                                                     <td>{{ $trait_json[$i] }}</td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    @php
+                                                        try{
+                                                            $str1 = json_decode($exr->trait_habit);
+                                                            // $str2 = $work_habit_json[$i].$student_id.$ex->id.$year;
+                                                            $str2 = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
+
+                                                            $str = $str1->$str2;
+                                                            // $str = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
+
+                                                        }catch(Exception $e){
+                                                            $str = [null, null, null, null, null];
+                                                        }
+                                                    @endphp
+                                                    <td><input value="{{ $str[0] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[2] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[3] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[4] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
