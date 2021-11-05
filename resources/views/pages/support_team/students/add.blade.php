@@ -13,14 +13,21 @@
                 <h6>Personal data</h6>
                 <fieldset>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Student ID: <span class="text-danger">*</span></label>
+                            <input value="{{ old('student_id') }}" required type="text" name="student_id" placeholder="Student Registration NO" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Full Name: <span class="text-danger">*</span></label>
                                 <input value="{{ old('name') }}" required type="text" name="name" placeholder="Full Name" class="form-control">
-                                </div>
                             </div>
+                        </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Address: <span class="text-danger">*</span></label>
                                 <input value="{{ old('address') }}" class="form-control" placeholder="Address" name="address" type="text" required>
