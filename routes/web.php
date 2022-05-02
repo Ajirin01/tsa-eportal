@@ -196,5 +196,6 @@ Route::group(['namespace' => 'SuperAdmin','middleware' => 'super_admin', 'prefix
 Route::group(['namespace' => 'MyParent','middleware' => 'my_parent',], function(){
 
     Route::get('/my_children', 'MyController@children')->name('my_children');
+    Route::get('/my_child_learning_materials/{class_id}', 'MyController@learningMaterials')->name('myChildLearningMaterials');
 
 });

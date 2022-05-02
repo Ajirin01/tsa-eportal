@@ -41,6 +41,8 @@ class LearningMaterialController extends Controller
 
     public function store(Request $request)
     {
+        // echo $request->class;
+        // exit;
         // return response()->json($requetitlest->hasFile('pdf'));
         // exit;
         // return response()->json($request->file('pdf'));
@@ -67,7 +69,7 @@ class LearningMaterialController extends Controller
 
             $category->learning_materials()->create($data);
             // LearningMaterial::create($data);
-            return Qs::jsonStoreOk();
+            return Qs::jsonStoreOk("materials.index");
         }else{
             return back()->with('pop_error', 'Please select at least one photo');
         }
@@ -107,11 +109,11 @@ class LearningMaterialController extends Controller
 
             $material->update($data);
             // LearningMaterial::create($data);
-            return Qs::jsonUpdateOk();
+            return Qs::updateOk("materials.index");
         }else{
             $data['material'] = $material->material;
             $material->update($data);
-            return Qs::jsonUpdateOk();
+            return Qs::updateOk("materials.index");
         }
     }
 
@@ -119,8 +121,8 @@ class LearningMaterialController extends Controller
     {
         $material = LearningMaterial::find($id);
 
-        $material->delete();
+        $material->delete("materials.index");
 
-        return Qs::jsonDeleteOk();
+        return Qs::deleteOk("materials.index");
     }
 }

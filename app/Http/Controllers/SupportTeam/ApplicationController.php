@@ -76,6 +76,7 @@ class ApplicationController extends Controller
     public function show($id)
     {
         $application = Application::find($id);
+        // return response()->json(json_decode(($application)->form_data));
         return view('pages.support_team.applications.show', ['application'=> $application]);
     }
 
@@ -144,6 +145,6 @@ class ApplicationController extends Controller
 
         $application->delete();
 
-        return Qs::jsonDeleteOk();
+        return Qs::deleteOk("applications.index");
     }
 }

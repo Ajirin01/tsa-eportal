@@ -42,11 +42,6 @@
                         <td><input title="CA3" min="0" max="10" class="text-center" name="t3_{{ $mk->id }}" value="{{ $mk->t3 }}" type="number"></td>
                         <td><input title="CA4" min="0" max="10" class="text-center" name="t4_{{ $mk->id }}" value="{{ $mk->t4 }}" type="number"></td>
                         <td><input title="EXAM" min="0" max="60" class="text-center" name="exm_{{ $mk->id }}" value="{{ $mk->exm }}" type="number">
-                            @if ( $mk->sec_b == 'on')
-                                <input checked type="checkbox" name="sec_b" id="">
-                            @else
-                                <input type="checkbox" name="sec_b" id="">
-                            @endif
                         </td>
                     @endif
                     
@@ -71,10 +66,10 @@
                         <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[4] }}" type="number"></td>
                         <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[5] }}" type="number"></td>
                         <td><input title="CA4" min="1" max="5000" class="text-center" name="bk{{ $mk->id }}[]" value="{{ $bk_val[6] }}" type="number">
-                            @if ( $mk->sec_a == 'on')
-                                <input checked type="checkbox" name="sec_a" id="">
+                            @if ( $mk->sec_b == 'on')
+                                <input checked type="checkbox" name="sec_b" id="">
                             @else
-                                <input type="checkbox" name="sec_a" id="">
+                                <input type="checkbox" name="sec_b" id="">
                             @endif
                         </td>
                     </tr>
@@ -96,7 +91,13 @@
                         <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[3] }}" type="number"></td>
                         <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[4] }}" type="number"></td>
                         <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[5] }}" type="number"></td>
-                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[6] }}" type="number"></td>
+                        <td><input title="CA4" min="1" max="100" class="text-center" name="per{{ $mk->id }}[]" value="{{ $per_val[6] }}" type="number">
+                            @if ( $mk->sec_a == 'on')
+                                <input checked type="checkbox" name="sec_a" id="">
+                            @else
+                                <input type="checkbox" name="sec_a" id="">
+                            @endif
+                        </td>   
                     </tr>
                 @endif
 

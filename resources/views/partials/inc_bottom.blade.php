@@ -42,5 +42,8 @@
 <!-- /theme JS files -->
 
 <script src=" {{ asset('assets/js/custom.js') }} "></script>
+<script>
+        CKEDITOR.replace( '_description' );
+</script>
 
 @include('partials.js.custom_js')

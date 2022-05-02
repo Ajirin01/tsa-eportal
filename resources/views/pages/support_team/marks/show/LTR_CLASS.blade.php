@@ -247,6 +247,7 @@
                                         @foreach($subjects as $sub)
                                             <tr>
                                                 <td>{{ $sub->name }}</td>
+                                                {{--{{json_encode($marks->where('subject_id', $sub->id))}}--}}
                                                 @foreach($marks->where('subject_id', $sub->id)->where('exam_id', $ex->id) as $mk)
                                                     <td align="center">{{ $mk->t1 ?: '-' }}</td>
                                                     <td align="center">{{ $mk->t2 ?: '-' }}</td>
@@ -348,101 +349,103 @@
 
 				<!-- behaviourer trait table -->
 				<table style="width: 100%">
-					<tr>
-						<td>
-							<table style="width: 100%">
-								<thead>
-									<tr>
-										<td colspan="6">SECTION C: WORK HABITS AND SOCIAL TRAITS</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="trait">A</td>
-										<td class="trait">B</td>
-										<td class="trait">C</td>
-										<td class="trait">D</td>
-										<td class="trait">E</td>
-									</tr>
-								</thead>
+                <tr>
+                    <td>
+                        <table style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <td colspan="6">SECTION C: WORK HABITS AND SOCIAL TRAITS</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>A</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                </tr>
+                            </thead>
 
-								<tbody>
-                                    
-                                    @for ($i = 0; $i < count($work_habit_json) ; $i++)
+                            <tbody>
+                                @for ($i = 0; $i < count($work_habit_json) ; $i++)
+                                    <tr>
+                                        <td>{{ $work_habit_json[$i] }}</td>
+                                        
                                         @php
-                                            $str = preg_replace("/ /", "_",$work_habit_json[$i].$student_id.$ex->id.$year);
+                                            try{
+                                                $str1 = json_decode($exr->trait_habit);
+                                                // $str2 = $work_habit_json[$i].$student_id.$ex->id.$year;
+                                                $str2 = preg_replace("/ /", "_",$work_habit_json[$i].$student_id.$ex->id.$year);
+
+                                                $str = $str1->$str2;
+                                                // $str = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
+
+                                            }catch(Exception $e){
+                                                $str = [null, null, null, null, null];
+                                            }
                                         @endphp
-                                        <tr>
-                                            <td>{{ $work_habit_json[$i] }}</td>
-                                            {{-- <td>{{($trait_habit)->$str[0]}}</td> --}}
-                                            @if ($trait_habit == null)
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                            @else
-                                                <td class="trait">{{ ($trait_habit)->$str[0] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[1] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[2] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[3] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[4] }}</td>
-                                            @endif
-                                        </tr>
-                                    @endfor
+                                        <td>{{ $str[0] }}</td>
+                                        <td>{{ $str[1] }}</td>
+                                        <td>{{ $str[2] }}</td>
+                                        <td>{{ $str[3] }}</td>
+                                        <td>{{ $str[4] }}</td>
+                                    </tr>
+                                @endfor
 
-								</tbody>
+                            </tbody>
 
-							</table>
-						</td>
-						<td> 
-							<span><b>HEAD TEACHER S REMARKS:</b></span>	
-							<h5>{{ $exam_records[0]->t_comment }}</h5>
-						</td>
-						<td>
-							<table style="width: 100%">
-								<thead>
-									<tr>
-										<td colspan="6">SECTION C: WORK HABITS AND SOCIAL TRAITS</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="trait">A</td>
-										<td class="trait">B</td>
-										<td class="trait">C</td>
-										<td class="trait">D</td>
-										<td class="trait">E</td>
-									</tr>
-								</thead>
+                        </table>
+                    </td>
+                    <td style="text-align: center"> 
+                        <span><b>HEAD TEACHER'S REMARKS:</b></span>	
+                        <h5 style="text-align: left">{{ $exr->t_comment }}</h5>
+                    </td>
+                    <td>
+                        <table style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <td colspan="6">SECTION C: WORK HABITS AND SOCIAL TRAITS</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>A</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                </tr>
+                            </thead>
 
-								<tbody>
-									@for ($i = 0; $i < count($trait_json) ; $i++)
+                            <tbody>
+                                @for ($i = 0; $i < count($trait_json) ; $i++)
+                                    <tr>
+                                        <td>{{ $trait_json[$i] }}</td>
                                         @php
-                                            $str = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $trait_json[$i] }}</td>
-                                            {{-- <td>{{($trait_habit)->$str[0]}}</td> --}}
-                                            @if ($trait_habit == null)
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                                <td class="trait"></td>
-                                            @else
-                                                <td class="trait">{{ ($trait_habit)->$str[0] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[1] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[2] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[3] }}</td>
-                                                <td class="trait">{{ ($trait_habit)->$str[4] }}</td>
-                                            @endif
-                                        </tr>
-                                    @endfor
-								</tbody>
+                                            try{
+                                                $str1 = json_decode($exr->trait_habit);
+                                                // $str2 = $work_habit_json[$i].$student_id.$ex->id.$year;
+                                                $str2 = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
 
-							</table>
-						</td>
-					</tr>
-				</table>
+                                                $str = $str1->$str2;
+                                                // $str = preg_replace("/ /", "_",$trait_json[$i].$student_id.$ex->id.$year);
+
+                                            }catch(Exception $e){
+                                                $str = [null, null, null, null, null];
+                                            }
+                                        @endphp
+                                        <td>{{ $str[0] }}</td>
+                                        <td>{{ $str[1] }}</td>
+                                        <td>{{ $str[2] }}</td>
+                                        <td>{{ $str[3] }}</td>
+                                        <td>{{ $str[4] }}</td>
+                                    </tr>
+                                @endfor
+                            </tbody>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
 			</div>
                 {{--Print Button--}}
                 <div class="text-center mt-3">
@@ -544,11 +547,11 @@
                                                             $str = [null, null, null, null, null];
                                                         }
                                                     @endphp
-                                                    <td><input value="{{ $str[0] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[1] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[2] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[3] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[4] }}" style="width: 30px" type="text" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[0] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[1] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[2] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[3] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[4] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $work_habit_json[$i].$student_id.$ex->id.$year }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>
@@ -595,11 +598,11 @@
                                                             $str = [null, null, null, null, null];
                                                         }
                                                     @endphp
-                                                    <td><input value="{{ $str[0] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[1] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[2] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[3] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
-                                                    <td><input value="{{ $str[4] }}" style="width: 30px" type="text" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[0] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[1] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[2] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[3] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
+                                                    <td><input value="{{ $str[4] }}" style="width: 30px" type="number" min="0" max="5" name="{{ $trait_json[$i].$student_id.$ex->id.$year }}[]" /></td>
                                                     {{-- <td>FOLLOWS DIRECTIONS</td>
                                                     <td></td>
                                                     <td></td>

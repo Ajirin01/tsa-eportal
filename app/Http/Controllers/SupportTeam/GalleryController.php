@@ -36,6 +36,7 @@ class GalleryController extends Controller
     public function create()
     {
         $gallerys = Gallery::all();
+        $gallery_category = GalleryCategory::all();
         return view('pages.support_team.gallery.index', ['galleries'=> $gallerys]);
     }
 
@@ -111,11 +112,11 @@ class GalleryController extends Controller
 
             $gallery->update($data);
             // Gallery::create($data);
-            return Qs::jsonUpdateOk();
+            return Qs::updateOk("gallery.index");
         }else{
             $data['photo'] = $gallery->photo;
             $gallery->update($data);
-            return Qs::jsonUpdateOk();
+            return Qs::updateOk("gallery.index");
         }
     }
 
@@ -125,6 +126,6 @@ class GalleryController extends Controller
 
         $gallery->delete();
 
-        return Qs::jsonDeleteOk();
+        return Qs::deleteOk("gallery.index");
     }
 }

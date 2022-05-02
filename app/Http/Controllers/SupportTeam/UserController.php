@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Validator;
 
 
 class UserController extends Controller
@@ -66,9 +67,40 @@ class UserController extends Controller
 
     public function store(UserRequest $req)
     {
+        // return response()->json($req->all());
         $user_type = $this->user->findType($req->user_type)->title;
+        // return response()->json(preg_replace("/_/", "",strtoupper($user_type)));
+        // $data = $req->except(Qs::getStaffRecord());
+        $rule = [
+            'name' => 'required|string|min:6|max:150',
+            'gender' => 'required|string',
+            'phone' => 'sometimes|nullable|numeric|min:6|max:20',
+            'phone2' => 'sometimes|nullable|numeric|min:6|max:20',
+            'email' => 'sometimes|nullable|email|max:100|unique:users',
+            'photo' => 'sometimes|nullable|image|mimes:jpeg,gif,png,jpg|max:2048',
+            'address' => 'required|string|min:6|max:120',
+            'bg_id' => 'sometimes|nullable',
+            'state_id' => 'required',
+            'lga_id' => 'required',
+            'nal_id' => 'required'
+        ];
 
-        $data = $req->except(Qs::getStaffRecord());
+        $validate = Validator::make($req->all(), $rule);
+        $errors = "";
+        if($validate->fails()){
+            $errors_arr = $validate->errors();
+            // for($i=0; $i< count($validate->errors()); $i++){
+            //     $errors .= json_encode($errors_arr[$i]) . "<br>";
+            // }
+
+            foreach ($errors_arr as $key => $error) {
+                // $errors .= $error . "<br>";
+                echo $key;
+            }
+            exit;
+            return $errors; 
+            // return Qs::json($errors_arr->msg, FALSE);
+        }
         $data['name'] = ucwords($req->name);
         $data['user_type'] = $user_type;
         $data['photo'] = Qs::getDefaultUserImage();
@@ -77,7 +109,7 @@ class UserController extends Controller
         $user_is_staff = in_array($user_type, Qs::getStaff());
         $user_is_teamSA = in_array($user_type, Qs::getTeamSA());
 
-        $staff_id = 'TSA/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
+        $staff_id = 'TSA/'.preg_replace("/_/", "",strtoupper($user_type)).'/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
         $data['username'] = $uname = ($user_is_teamSA) ? $req->username : $staff_id;
 
         $pass = $req->password ?: $user_type;

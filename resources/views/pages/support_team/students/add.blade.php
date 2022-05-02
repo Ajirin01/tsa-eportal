@@ -8,6 +8,8 @@
                 {!! Qs::getPanelOptions() !!}
             </div>
 
+            <!-- <form method="post" enctype="multipart/form-data" class="wizard-form steps-validation" action="{{ route('students.store') }}" data-fouc> -->
+
             <form id="ajax-reg" method="post" enctype="multipart/form-data" class="wizard-form steps-validation" action="{{ route('students.store') }}" data-fouc>
                @csrf
                 <h6>Personal data</h6>
@@ -16,7 +18,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Student ID: <span class="text-danger">*</span></label>
-                            <input value="{{ old('student_id') }}" required type="text" name="student_id" placeholder="Student Registration NO" class="form-control">
+                                <input value="{{ old('student_id') }}" required type="text" name="student_id" placeholder="Student Registration NO" class="form-control">
                             </div>
                         </div>
 
@@ -56,15 +58,15 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Phone:</label>
-                                <input value="{{ old('phone') }}" type="text" name="phone" class="form-control" placeholder="" >
+                                <label for="phone">Phone:</label>
+                                <input value="{{ old('phone') }}" type="tel" id="phone" name="phone" class="form-control" placeholder="enter your mobile number">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Telephone:</label>
-                                <input value="{{ old('phone2') }}" type="text" name="phone2" class="form-control" placeholder="" >
+                                <label for="phone2">Telephone:</label>
+                                <input value="{{ old('phone2') }}" type="tel" id="phone2" name="phone2" class="form-control" placeholder="enter your telephone number" >
                             </div>
                         </div>
 
@@ -92,7 +94,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <label for="state_id">State: <span class="text-danger">*</span></label>
+                            <label for="state_id">State: <span class="text-danger">* <small style="font-size: .7rem">Select "Not Nigerian" if Non Nigerian</small></span></label>
                             <select onchange="getLGA(this.value)" required data-placeholder="Choose.." class="select-search form-control" name="state_id" id="state_id">
                                 <option value=""></option>
                                 @foreach($states as $st)
@@ -125,7 +127,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="d-block">Upload Passport Photo:</label>
-                                <input value="{{ old('photo') }}" accept="image/*" type="file" name="photo" class="form-input-styled" data-fouc>
+                                <input value="{{ old('photo') }}" accept="image/*" type="file" name="photo" class="form-input-styled" data-fouc required>
                                 <span class="form-text text-muted">Accepted Images: jpeg, png. Max file size 2Mb</span>
                             </div>
                         </div>
@@ -216,7 +218,17 @@
                         </div>
                     </div> --}}
                 </fieldset>
-
+                        <p id="bt" class="btn"> heelo</p>
             </form>
         </div>
+        <script>
+            var nal = document.getElementById('nal_id')
+            var state = document.getElementById('state_id')
+            var lga = document.getElementById('lga_id')
+            console.log(nal)
+            $('#bt').on('change', function(){
+                console.log("hello")
+            })
+            nal.addEventListener('click', function(){console.log("hello")})
+        </script>
     @endsection

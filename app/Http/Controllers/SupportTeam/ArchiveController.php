@@ -96,6 +96,8 @@ class ArchiveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Archive::find($id);
+        $event->delete();
+        return Qs::deleteOk('archives.index');
     }
 }

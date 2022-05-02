@@ -11,7 +11,7 @@
         <div event="card-body">
             <div event="row">
                 <div event="col-md-6">
-                    <form event="ajax-update" data-reload="#page-header" method="post" action="{{ route('material.update', $material->id) }}" enctype="multipart/form-data">
+                    <form event="ajax-update" data-reload="#page-header" method="post" action="{{ route('materials.update', $material->id) }}" enctype="multipart/form-data">
                         @csrf @method('PUT')
                         <div event="form-group row">
                             <label event="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
@@ -21,8 +21,8 @@
                         </div>
                         <div class="form-group row">
                             <label class="d-block">Upload Event Photo:</label>
-                            <input accept="image/*" type="file" name="pdf" class="form-input-styled" data-fouc multiple>
-                            <span class="form-text text-muted">Accepted Images: jpeg, png. Max file size 2Mb</span>
+                            <input type="file" name="pdf" class="form-input-styled" data-fouc multiple>
+                            <span class="form-text text-muted">Accepted all file types</span>
                         </div>
 
                         <div class="form-group row">

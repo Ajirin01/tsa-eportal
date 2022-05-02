@@ -36,7 +36,7 @@ class SubjectController extends Controller
         $data = $req->all();
         $this->my_class->createSubject($data);
 
-        return Qs::jsonStoreOk();
+        return Qs::storeOk("subjects.index");
     }
 
     public function edit($id)
@@ -53,7 +53,7 @@ class SubjectController extends Controller
         $data = $req->all();
         $this->my_class->updateSubject($id, $data);
 
-        return Qs::jsonUpdateOk();
+        return Qs::updateOk("subjects.index");
     }
 
     public function destroy($id)

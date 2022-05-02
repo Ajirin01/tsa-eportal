@@ -91,12 +91,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    
                     @foreach($students as $s)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td style="text-align: center">{{ $s->user->name }}</td>
                             @foreach($subjects as $sub)
-                            <td>{{ $marks->where('student_id', $s->user_id)->where('subject_id', $sub->id)->first()->$tex ?? '-' ?: '-' }}</td>
+                                <td>{{ $marks->where('student_id', $s->user_id)->where('subject_id', $sub->id)->first()->$tex ?? '-' ?: '-' }}</td>
                             @endforeach
 
                             @if($ex->term == 3)
@@ -107,7 +108,6 @@
                             {{--3rd Term total--}}
                             <td>{{ Mk::getTermTotal($s->user_id, 3, $year) ?? '-' }}</td>
                             @endif
-
                             <td style="color: darkred">{{ $exr->where('student_id', $s->user_id)->first()->total ?: '-' }}</td>
                             <td style="color: darkblue">{{ $exr->where('student_id', $s->user_id)->first()->ave ?: '-' }}</td>
                             <td style="color: darkgreen">{!! Mk::getSuffix($exr->where('student_id', $s->user_id)->first()->pos) ?: '-' !!}</td>

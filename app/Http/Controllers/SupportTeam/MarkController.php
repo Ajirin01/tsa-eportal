@@ -300,18 +300,21 @@ class MarkController extends Controller
 
         $w = $p; unset( $w['subject_id'] );
 
+        // $arr = Array();
         foreach ($all_st_ids as $st_id) {
 
             $d3['total'] = $this->mark->getExamTotalTerm($exam, $st_id, $class_id, $this->year);
             $d3['ave'] = $this->mark->getExamAvgTerm($exam, $st_id, $class_id, $section_id, $this->year);
             $d3['class_ave'] = $this->mark->getClassAvg($exam, $class_id, $this->year);
             $d3['pos'] = $this->mark->getPos($st_id, $exam, $class_id, $section_id, $this->year);
+            $w['student_id'] = $st_id;
 
+            // array_push($arr, [$w, $d3]);
             $this->exam->updateRecord($w, $d3);
         }
 
         /*Exam Record End*/
-
+        // return response()->json($arr);
        return Qs::jsonUpdateOk();
     }
 

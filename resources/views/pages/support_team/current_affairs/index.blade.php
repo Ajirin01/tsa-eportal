@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <form class="ajax-store" method="post" action="{{ route('current-affairs.store') }}" enctype="multipart/form-data">
-                            {{-- <form method="post" action="{{ route('current-affairs.store') }}" enctype="multipart/form-data"> --}}
+                            <!-- <form method="post" action="{{ route('current-affairs.store') }}" enctype="multipart/form-data"> -->
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
@@ -83,7 +83,7 @@
                                 
                                 <div class="form-group row">
                                     <label class="d-block">Current Affair Description:</label>
-                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{ old('description') }}</textarea>
+                                    <textarea class="form-control" name="_description" id="" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
 
                                 {{-- <div class="form-group row">

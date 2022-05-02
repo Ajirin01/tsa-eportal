@@ -51,9 +51,9 @@ class CurrentAffairController extends Controller
         }else{
             $data= [];
             $data['title'] = $request->title;
-            $data['description'] = $request->description;
+            $data['description'] = $request->_description;
             CurrentAffair::create($data);
-            return Qs::jsonStoreOk();
+            return Qs::storeOk("current-affairs.index");
         }
     }
 
@@ -81,10 +81,10 @@ class CurrentAffairController extends Controller
         $event_category_to_update = CurrentAffair::find($id);
         $data = [];
         $data['title'] = $request->title;
-        $data['description'] = $request->description;
+        $data['description'] = $request->_description;
 
         $event_category_to_update->update($data);
-        return Qs::jsonUpdateOk();
+        return Qs::jsonUpdateOk("current-affairs.index");
 
     }
 
@@ -96,6 +96,8 @@ class CurrentAffairController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = CurrentAffair::find($id);
+        $event->delete();
+        return Qs::deleteOk('current-affairs.index');
     }
 }

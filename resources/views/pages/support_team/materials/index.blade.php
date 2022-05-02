@@ -47,7 +47,7 @@
                                                         @if(Qs::userIsSuperAdmin())
                                                         {{--Delete--}}
                                                         <a id="{{ $material->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
-                                                        <form method="post" id="item-delete-{{ $material->id }}" action="{{ route('material.destroy', $material->id) }}" class="hidden">@csrf @method('delete')</form>
+                                                        <form method="post" id="item-delete-{{ $material->id }}" action="{{ route('materials.destroy', $material->id) }}" class="hidden">@csrf @method('delete')</form>
                                                         @endif
 
                                                 </div>
@@ -74,12 +74,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <form class="ajax-store" method="post" action="{{ route('materials.store') }}" enctype="multipart/form-data">
-                            {{-- <form method="post" action="{{ route('materials.store') }}" enctype="multipart/form-data"> --}}
+                            <!-- <form method="post" action="{{ route('materials.store') }}" enctype="multipart/form-data"> -->
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Category <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <select name="class" id="" class="form-control">
+                                        <select name="class" id="" class="form-control" required>
                                             <option value="">please Class</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -94,8 +94,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="d-block">Upload Meterial PDF:</label>
-                                    <input accept=".pdf" type="file" name="pdf" class="form-input-styled" data-fouc>
+                                    <label class="d-block">Upload Meterial:</label>
+                                    <input type="file" name="pdf" class="form-input-styled" data-fouc>
                                     <span class="form-text text-muted">Accepted File: pdf. Max file size 2Mb</span>
                                 </div>
 
@@ -130,3 +130,17 @@
     {{--Meterial List Ends--}}
 
 @endsection
+<!-- <!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <title>CKEditor</title>
+                <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+        </head>
+        <body>
+                <textarea name="editor1"></textarea>
+                <script>
+                        CKEDITOR.replace( 'editor1' );
+                </script>
+        </body>
+</html> -->

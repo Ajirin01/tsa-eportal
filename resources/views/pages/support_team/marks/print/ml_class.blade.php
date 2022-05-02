@@ -243,8 +243,18 @@
                                                 @endif
                                                 <td align="center">{{ $mk->grade ? $mk->grade->name : '-' }}</td>
                                                 <td align="center">{{ $mk->sub_pos ?: '-' }}</td>
-                                                <td align="center">{{$marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->max('tex1')}}</td>
-                                                <td align="center">{{$marks->where('subject_id', $sub->id)->where('exam_id', $ex->id)->min('tex1')}}</td>
+                                                @if($ex->term == 1)
+                                                        <td align="center">{{App\Models\Mark::where('subject_id', $sub->id)->where('exam_id', $ex->id)->max('tex1')}}</td>
+                                                        <td align="center">{{App\Models\Mark::where('subject_id', $sub->id)->where('exam_id', $ex->id)->min('tex1')}}</td>
+                                                    @endif
+                                                    @if($ex->term == 2)
+                                                        <td align="center">{{App\Models\Mark::where('subject_id', $sub->id)->where('exam_id', $ex->id)->max('tex2')}}</td>
+                                                        <td align="center">{{App\Models\Mark::where('subject_id', $sub->id)->where('exam_id', $ex->id)->min('tex2')}}</td>
+                                                    @endif
+                                                    @if($ex->term == 3)
+                                                        <td align="center">{{App\Models\Mark::where('subject_id', $sub->id)->where('exam_id', $ex->id)->max('tex3')}}</td>
+                                                        <td align="center">{{App\Models\Mark::where('subject_id', $sub->id)->where('exam_id', $ex->id)->min('tex3')}}</td>
+                                                    @endif
                                                 <td align="center">{{ $mk->grade ? $mk->grade->remark : '-' }}</td>
                                             @endforeach
                                         </tr>

@@ -65,7 +65,7 @@ class GalleryCategoryController extends Controller
     public function edit($id)
     {
         $event_categories = GalleryCategory::find($id);
-        return view('pages.support_team.events_category.edit', ['event_categories'=> $event_categories]);
+        return view('pages.support_team.events_category.edit', ['event_category'=> $event_categories]);
     }
 
     /**
@@ -96,6 +96,8 @@ class GalleryCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = GalleryCategory::find($id);
+        $event->delete();
+        return Qs::deleteOk('category.index');
     }
 }
