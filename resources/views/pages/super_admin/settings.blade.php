@@ -90,13 +90,13 @@
                <fieldset>
                    <legend><strong>Next Term Fees</strong></legend>
                    @foreach($class_types as $ct)
-                   <div class="form-group row">
-                       <label class="col-lg-3 col-form-label font-weight-semibold">{{ $ct->name }}</label>
-                       <div class="col-lg-9">
-                           <input class="form-control" value="{{ $s['next_term_fees_'.strtolower($ct->code)] }}" name="nt_fee_{{ strtolower($ct->code) }}" placeholder="{{ $ct->name }}" type="text">
-                       </div>
-                   </div>
-                       @endforeach
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label font-weight-semibold">{{ $ct->name }}</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" value="{{ $s['next_term_fees_'.strtolower($ct->code)] }}" name="nt_fee_{{ strtolower($ct->code) }}" placeholder="{{ $ct->name }}" type="text">
+                            </div>
+                        </div>
+                    @endforeach
                </fieldset>
                     <hr class="divider">
 

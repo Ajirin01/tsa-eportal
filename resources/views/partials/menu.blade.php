@@ -124,7 +124,7 @@
                             </ul>
 
                             </li>
-
+                            
                             {{--Student Graduated--}}
                             <li class="nav-item"><a href="{{ route('students.graduated') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.graduated' ]) ? 'active' : '' }}">Students Graduated</a></li>
                                 @endif
@@ -134,7 +134,7 @@
                 @endif
 
                 {{--Manage event and gallery--}}
-                @if(Qs::userIsTeamSAT())
+                @if(Qs::userIsTeamSA())
                     <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['event.create', 'event.index', 'event.edit', 'event.show', 'gallery.create', 'gallery.edit', 'gallery.index']) ? 'nav-item-expanded nav-item-open' : '' }} ">
                         <a href="#" class="nav-link"><i class="icon-users"></i> <span> Events and Gallery</span></a>
 
@@ -180,28 +180,28 @@
                 @endif
 
                 {{--Webmail--}}
-                @if(Qs::userIsTeamSAT())
+                {{--@if(Qs::userIsTeamSAT())
                     <li class="nav-item">
                         <a href="http://webmail.trumpetsoundacademy.org" class="nav-link"><i class="icon-inbox"></i> <span> Webmail</span></a>
                     </li>
-                @endif
+                @endif--}}
 
                 {{--Manage Current Affairs--}}
-                @if(Qs::userIsTeamSAT())
+                @if(Qs::userIsTeamSA())
                     <li class="nav-item">
                         <a href="{{ route('current-affairs.index') }}" class="nav-link"><i class="icon-book"></i> <span> Current Affairs</span></a>
                     </li>
                 @endif
 
                 {{--Manage Current Affairs--}}
-                @if(Qs::userIsTeamSAT())
+                @if(Qs::userIsTeamSA())
                     <li class="nav-item">
                         <a href="{{ route('archives.index') }}" class="nav-link"><i class="icon-book"></i> <span> Manage Archives</span></a>
                     </li>
                 @endif
 
                 {{--Manage Vacancy Applications--}}
-                @if(Qs::userIsTeamSAT())
+                @if(Qs::userIsTeamSA())
                     <li class="nav-item">
                         <a href="{{ route('applications.index') }}" class="nav-link"><i class="icon-book"></i> <span>Manage Applications</span></a>
                     </li>
@@ -231,6 +231,10 @@
                     {{--Manage Subjects--}}
                     <li class="nav-item">
                         <a href="{{ route('subjects.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['subjects.index','subjects.edit',]) ? 'active' : '' }}"><i class="icon-pin"></i> <span>Subjects</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="http://webmail.trumpetsoundacademy.org" class="nav-link"><i class="icon-inbox"></i> <span> Webmail</span></a>
                     </li>
                 @endif
 

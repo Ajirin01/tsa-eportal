@@ -93,10 +93,14 @@
     <div class="col-md-12">
         <table align="center" style="border: none; width: 100%">
             <tr>
+                @php
+                    $close = App\Models\Setting::find(4);
+                    $begins = App\Models\Setting::find(5);
+                @endphp
                 <td style="border: none; color: blue; font-size: .8rem">COLLECTOR’S NAME _________________________________________</td>
                 <td style="border: none; color: blue; font-size: .8rem">SIGNATURE __________________________</td>
                 <td style="border: none; color: blue; font-size: .8rem">DATE _______________</td>
-                <td style="border: none; color: blue; font-size: .8rem" colspan="2">CLOSES ON _______________AND RE-OPENS ON ________________</td>
+                <td style="border: none; color: blue; font-size: .8rem" colspan="2">CLOSES ON <span style="text-decoration: underline; padding: 0 2px 0 2px; color: red">{{$close->description}} </span>AND RE-OPENS ON <span style="text-decoration: underline; padding: 0 2px 0 2px; color: red">{{$begins->description}}</span></td>
             </tr>
         </table>
     </div>
