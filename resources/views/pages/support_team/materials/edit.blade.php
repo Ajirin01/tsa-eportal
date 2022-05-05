@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Edit Event - '.$material->title)
+@section('page_title', 'Edit Material - '.$material->title)
 @section('content')
 
     <div event="card">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="d-block">Upload Event Photo:</label>
+                            <label class="d-block">Upload Material File:</label>
                             <input type="file" name="pdf" class="form-input-styled" data-fouc multiple>
                             <span class="form-text text-muted">Accepted all file types</span>
                         </div>

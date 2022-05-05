@@ -93,21 +93,22 @@ class LearningMaterialController extends Controller
         $data['title'] = $request->title;
         $data['description'] = $request->description;
 
-        $material = LearningMaterial::find($id);
+        $material_to_update = LearningMaterial::find($id);
 
         if($request->hasFile('pdf')) {
             $material = $request->file('pdf');
             $material_extension = $material->getClientOriginalExtension();
             // $material_name = 'gallery_photo'.rand(123456789,999999999).'.'.$material_extension;
             $material_name = $material->getClientOriginalName();
+            $material_name = '/public/uploads/'.$material_name;
             $upload_path = public_path('uploads/');
             $material->move($upload_path, $material_name);
         
             // return response()->json($gallery_photos_array);
             
-            $data['material'] = $material_name;
+            $data['material'] = '/public/uploads/'.$material->getClientOriginalName();
 
-            $material->update($data);
+            $material_to_update->update($data);
             // LearningMaterial::create($data);
             return Qs::updateOk("materials.index");
         }else{
